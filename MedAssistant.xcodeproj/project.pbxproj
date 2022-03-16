@@ -18,6 +18,7 @@
 		17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34227C0D9040004A990 /* SurveyView.swift */; };
 		17B7E34527C0D9400004A990 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34427C0D9400004A990 /* LoginView.swift */; };
 		17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34627C0DB800004A990 /* TemperatureView.swift */; };
+		17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D18A4F27E222A000D0B9DD /* WeightView.swift */; };
 		17F4A2B527B56A2A002608EC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F4A2B427B56A2A002608EC /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		17B7E34227C0D9040004A990 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		17B7E34427C0D9400004A990 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17B7E34627C0DB800004A990 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
+		17D18A4F27E222A000D0B9DD /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		17F4A2B427B56A2A002608EC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				17B7E34227C0D9040004A990 /* SurveyView.swift */,
 				17B7E34427C0D9400004A990 /* LoginView.swift */,
 				17B7E34627C0DB800004A990 /* TemperatureView.swift */,
+				17D18A4F27E222A000D0B9DD /* WeightView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				17B7E33D27C0CFED0004A990 /* OptionButton.swift in Sources */,
 				17B7E34527C0D9400004A990 /* LoginView.swift in Sources */,
 				17996A962781D4CE00A0800D /* ContentView.swift in Sources */,
+				17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */,
 				17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */,
 				17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */,
 				17B7E34127C0D8E40004A990 /* ChatView.swift in Sources */,
