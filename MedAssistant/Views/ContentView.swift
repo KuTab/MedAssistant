@@ -21,7 +21,7 @@ struct MainView: View {
                     HStack{
                         OptionButton(title: "Temperature", titleFontSize: 20, imageName: "thermometer", destination: TemperatureView(), startColor: .green, endColor: .teal)
                         
-                        OptionButton(title: "Weight", titleFontSize: 30, imageName: "thermometer", destination: ChatView(), startColor: .pink, endColor: .mint)
+                        OptionButton(title: "Weight", titleFontSize: 30, imageName: "thermometer", destination: WeightView(), startColor: .pink, endColor: .mint)
                     }
                 }
             }.navigationBarHidden(true)
