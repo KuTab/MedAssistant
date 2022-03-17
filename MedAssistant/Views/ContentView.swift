@@ -23,6 +23,10 @@ struct MainView: View {
                         
                         OptionButton(title: "Weight", titleFontSize: 30, imageName: "thermometer", destination: WeightView(), startColor: .pink, endColor: .mint)
                     }
+                    
+                    HStack{
+                        OptionButton(title: "Symptoms", titleFontSize: 20, imageName: "thermometer", destination: SymptomsView(), startColor: .green, endColor: .teal)
+                    }
                 }
             }.navigationBarHidden(true)
         }.accentColor(.white)

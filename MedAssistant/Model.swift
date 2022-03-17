@@ -6,3 +6,5 @@
 //
 
 import Foundation
+
+var symptoms: [String] = ["Headache", "Insomnia", "Anxiety", "Sterss", "Fatigue", "Irritability", "Headache", "Insomnia", "Anxiety", "Sterss", "Fatigue", "Irritability"]

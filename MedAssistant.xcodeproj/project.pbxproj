@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		170D3E5D278DE380008F753C /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D3E5C278DE380008F753C /* BotResponse.swift */; };
+		172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C12BE27E38564005E1EB0 /* SymptomsView.swift */; };
 		17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */; };
 		17996A942781D4CE00A0800D /* MedAssistantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17996A932781D4CE00A0800D /* MedAssistantApp.swift */; };
 		17996A962781D4CE00A0800D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17996A952781D4CE00A0800D /* ContentView.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		170D3E5C278DE380008F753C /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
+		172C12BE27E38564005E1EB0 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
 		17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		17996A902781D4CE00A0800D /* MedAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17996A932781D4CE00A0800D /* MedAssistantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedAssistantApp.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				17B7E34427C0D9400004A990 /* LoginView.swift */,
 				17B7E34627C0DB800004A990 /* TemperatureView.swift */,
 				17D18A4F27E222A000D0B9DD /* WeightView.swift */,
+				172C12BE27E38564005E1EB0 /* SymptomsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */,
 				17F4A2B527B56A2A002608EC /* Model.swift in Sources */,
 				17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */,
 				17B7E33D27C0CFED0004A990 /* OptionButton.swift in Sources */,
