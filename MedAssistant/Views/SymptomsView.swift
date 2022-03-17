@@ -17,15 +17,12 @@ struct SymptomsView: View {
                 VStack{
                     Text("Symtops View")
                         .foregroundColor(.white)
-                        .font(.system(size: 60))
+                        .font(.system(size: 30))
                         .bold()
                     ScrollView{
                         VStack{
                             ForEach(symptoms, id: \.self){ symptom in
-                                Text(symptom)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 30))
-                                    .padding()
+                                SymptomRow(symptom: symptom)
                                     .frame(width: geometry.size.width - 10, height: 100)
                                     .background(.white.opacity(0.2))
                                     .cornerRadius(20)

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		170D3E5D278DE380008F753C /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D3E5C278DE380008F753C /* BotResponse.swift */; };
 		172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C12BE27E38564005E1EB0 /* SymptomsView.swift */; };
+		172C12C127E3942E005E1EB0 /* SymptomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C12C027E3942E005E1EB0 /* SymptomRow.swift */; };
 		17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */; };
 		17996A942781D4CE00A0800D /* MedAssistantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17996A932781D4CE00A0800D /* MedAssistantApp.swift */; };
 		17996A962781D4CE00A0800D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17996A952781D4CE00A0800D /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		170D3E5C278DE380008F753C /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
 		172C12BE27E38564005E1EB0 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
+		172C12C027E3942E005E1EB0 /* SymptomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomRow.swift; sourceTree = "<group>"; };
 		17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		17996A902781D4CE00A0800D /* MedAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17996A932781D4CE00A0800D /* MedAssistantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedAssistantApp.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				17B7E33C27C0CFED0004A990 /* OptionButton.swift */,
+				172C12C027E3942E005E1EB0 /* SymptomRow.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				17996A962781D4CE00A0800D /* ContentView.swift in Sources */,
 				17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */,
 				17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */,
+				172C12C127E3942E005E1EB0 /* SymptomRow.swift in Sources */,
 				17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */,
 				17B7E34127C0D8E40004A990 /* ChatView.swift in Sources */,
 				17996A942781D4CE00A0800D /* MedAssistantApp.swift in Sources */,
