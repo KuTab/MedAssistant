@@ -10,15 +10,21 @@ import SwiftUI
 struct SymptomsView: View {
     @Environment(\.presentationMode) var presentationMode
     
+    init(){
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
     var body: some View {
         GeometryReader{ geometry in
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
                 VStack{
-                    Text("Symtops View")
-                        .foregroundColor(.white)
-                        .font(.system(size: 30))
-                        .bold()
+//                    Text("Symtops View")
+//                        .foregroundColor(.white)
+//                        .font(.system(size: 30))
+//                        .bold()
+                    Spacer()
+                    
                     ScrollView{
                         VStack{
                             ForEach(symptoms, id: \.self){ symptom in
@@ -42,7 +48,7 @@ struct SymptomsView: View {
                             .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth:  4))
                     })
                 }
-            }.navigationBarTitle("", displayMode: .inline)
+            }.navigationBarTitle("Symptoms", displayMode: .inline)
         }
     }
     
