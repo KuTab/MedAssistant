@@ -72,7 +72,6 @@ struct WeightView: View {
     }
 }
 
-
 struct WeightView_Previews: PreviewProvider {
     static var previews: some View {
         WeightView()

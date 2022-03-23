@@ -60,3 +60,9 @@ struct SurveyView: View {
         }.navigationBarTitle("", displayMode: .inline)
     }
 }
+
+struct SurveyView_Previews: PreviewProvider {
+    static var previews: some View {
+        SurveyView()
+    }
+}
