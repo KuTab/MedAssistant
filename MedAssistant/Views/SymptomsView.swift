@@ -10,23 +10,23 @@ import SwiftUI
 struct SymptomsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    init(){
+    init() {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     var body: some View {
-        GeometryReader{ geometry in
-            ZStack{
+        GeometryReader { geometry in
+            ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
-                VStack{
+                VStack {
 //                    Text("Symtops View")
 //                        .foregroundColor(.white)
 //                        .font(.system(size: 30))
 //                        .bold()
                     Spacer()
                     
-                    ScrollView{
-                        VStack{
+                    ScrollView {
+                        VStack {
                             ForEach(symptoms, id: \.self){ symptom in
                                 SymptomRow(symptom: symptom)
                                     .frame(width: geometry.size.width - 10, height: 100)
@@ -52,7 +52,7 @@ struct SymptomsView: View {
         }
     }
     
-    func doneChoice(){
+    func doneChoice() {
         presentationMode.wrappedValue.dismiss()
     }
 }

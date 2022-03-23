@@ -24,7 +24,7 @@ struct SurveyView: View {
     @State private var picker1: String = ""
     
     var body: some View {
-        ZStack{
+        ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing)
                 .ignoresSafeArea(.all)
             

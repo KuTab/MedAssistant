@@ -13,20 +13,20 @@ struct WeightView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    var body: some View{
-        GeometryReader{geometry in
-            ZStack{
+    var body: some View {
+        GeometryReader {geometry in
+            ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
-                VStack{
+                VStack {
                     Text("Weight")
                         .foregroundColor(.white)
                         .font(.system(size: 60))
                         .bold()
                     Spacer()
                     
-                    HStack(spacing: 0){
+                    HStack(spacing: 0) {
 
-                        Picker("", selection: $weight){
+                        Picker("", selection: $weight) {
                             ForEach(0..<150, id: \.self) { num in
                                 Text("\(num).")
                                     .foregroundColor(.white)
@@ -37,7 +37,7 @@ struct WeightView: View {
                             .clipped()
                             .padding(.horizontal)
                         
-                        Picker("", selection: $weightDecimal){
+                        Picker("", selection: $weightDecimal) {
                             ForEach(0..<10, id: \.self) { num in
                                 Text("\(num)")
                                     .foregroundColor(.white)
@@ -67,7 +67,7 @@ struct WeightView: View {
         }
     }
     
-    func doneMonitoring(){
+    func doneMonitoring() {
         presentationMode.wrappedValue.dismiss()
     }
 }

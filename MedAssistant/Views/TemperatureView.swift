@@ -13,17 +13,17 @@ extension UIPickerView {
     
 }
 
-struct TemperatureView: View{
+struct TemperatureView: View {
     @State private var temperature: Int = 36
     @State private var temperatureDecimal: Int = 6
     
     @Environment(\.presentationMode) var presentationMode
     
-    var body: some View{
-        GeometryReader{ geometry in
-            ZStack{
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
-                VStack{
+                VStack {
                     Text("Temperature")
                         .foregroundColor(.white)
                         .font(.system(size: 60))
@@ -31,8 +31,8 @@ struct TemperatureView: View{
                     
                     Spacer()
                     
-                    HStack(spacing: 0){
-                        Picker("", selection: $temperature){
+                    HStack(spacing: 0) {
+                        Picker("", selection: $temperature) {
                             ForEach(34..<41, id: \.self) { num in
                                 Text("\(num).")
                                     .foregroundColor(.white)
@@ -43,7 +43,7 @@ struct TemperatureView: View{
                             .clipped()
                             .padding(.horizontal)
                         
-                        Picker("", selection: $temperatureDecimal){
+                        Picker("", selection: $temperatureDecimal) {
                             ForEach(0..<10, id: \.self) { num in
                                 Text("\(num)")
                                     .foregroundColor(.white)
@@ -73,7 +73,7 @@ struct TemperatureView: View{
         }
     }
     
-    func doneMonitoring(){
+    func doneMonitoring() {
         presentationMode.wrappedValue.dismiss()
     }
 }

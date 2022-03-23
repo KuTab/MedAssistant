@@ -15,9 +15,9 @@ struct ChatView: View {
     //Array of messages
     @State var messages: [String] = ["Welcome to chat bot"]
     
-    var body: some View{
-        VStack{
-            HStack{
+    var body: some View {
+        VStack {
+            HStack {
                 Text("Chat bot")
                     .font(.largeTitle)
                     .bold()
@@ -30,13 +30,13 @@ struct ChatView: View {
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
                 .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing))//HSTACK
             
-            ScrollView{
+            ScrollView {
                 //Messages
                 ForEach(messages, id: \.self) { message in
                     if message.contains("[USER]") {
                         let newMessage = message.replacingOccurrences(of: "[USER]", with: "")
                         
-                        HStack{
+                        HStack {
                             Spacer()
                             Text(newMessage)
                                 .padding()
@@ -47,7 +47,7 @@ struct ChatView: View {
                                 .padding(.bottom, 10)
                         }
                     } else {
-                        HStack{
+                        HStack {
                             Text(message)
                                 .padding()
                                 .background(.gray.opacity(0.15))
@@ -61,7 +61,7 @@ struct ChatView: View {
             }.rotationEffect(.degrees(180))
                 .background(Color.gray.opacity(0.10))
             
-            HStack{
+            HStack {
                 TextField("Type something here", text: $messageText)
                     .padding()
                     .background(Color.gray.opacity(0.1))
@@ -70,7 +70,8 @@ struct ChatView: View {
                         sendMessage(message: messageText)
                     }
                 
-                Button{                        sendMessage(message: messageText)
+                Button {
+                    sendMessage(message: messageText)
                 } label:{
                     Image(systemName: "paperplane.fill")
                 }
@@ -86,13 +87,13 @@ struct ChatView: View {
         if(message.isEmpty) {
             return
         }
-        withAnimation{
+        withAnimation {
             messages.append("[USER]" + message)
             self.messageText = ""
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            withAnimation{
+            withAnimation {
                 messages.append(getBotResponse(message: message))
             }
         }

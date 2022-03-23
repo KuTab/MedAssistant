@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		170D3E5D278DE380008F753C /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D3E5C278DE380008F753C /* BotResponse.swift */; };
+		172AB2DF27EBA0E50062634B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172AB2DE27EBA0E50062634B /* CalendarView.swift */; };
+		172AB2E227EBC3AD0062634B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172AB2E127EBC3AD0062634B /* CustomDatePickerView.swift */; };
 		172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C12BE27E38564005E1EB0 /* SymptomsView.swift */; };
 		172C12C127E3942E005E1EB0 /* SymptomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C12C027E3942E005E1EB0 /* SymptomRow.swift */; };
 		17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */; };
@@ -20,12 +22,16 @@
 		17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34227C0D9040004A990 /* SurveyView.swift */; };
 		17B7E34527C0D9400004A990 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34427C0D9400004A990 /* LoginView.swift */; };
 		17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34627C0DB800004A990 /* TemperatureView.swift */; };
+		17BFCAA427EBC8C3000CDFF0 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BFCAA327EBC8C3000CDFF0 /* DateValue.swift */; };
+		17BFCAA627EBD316000CDFF0 /* DrugTake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BFCAA527EBD316000CDFF0 /* DrugTake.swift */; };
 		17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D18A4F27E222A000D0B9DD /* WeightView.swift */; };
 		17F4A2B527B56A2A002608EC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F4A2B427B56A2A002608EC /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		170D3E5C278DE380008F753C /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
+		172AB2DE27EBA0E50062634B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		172AB2E127EBC3AD0062634B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		172C12BE27E38564005E1EB0 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
 		172C12C027E3942E005E1EB0 /* SymptomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomRow.swift; sourceTree = "<group>"; };
 		17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -40,6 +46,8 @@
 		17B7E34227C0D9040004A990 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		17B7E34427C0D9400004A990 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17B7E34627C0DB800004A990 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
+		17BFCAA327EBC8C3000CDFF0 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		17BFCAA527EBD316000CDFF0 /* DrugTake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugTake.swift; sourceTree = "<group>"; };
 		17D18A4F27E222A000D0B9DD /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		17F4A2B427B56A2A002608EC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		172AB2E027EBC1900062634B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				17BFCAA327EBC8C3000CDFF0 /* DateValue.swift */,
+				17BFCAA527EBD316000CDFF0 /* DrugTake.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		17996A872781D4CE00A0800D = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +91,7 @@
 		17996A922781D4CE00A0800D /* MedAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				172AB2E027EBC1900062634B /* Model */,
 				17B7E33F27C0D8CB0004A990 /* Views */,
 				17B7E33E27C0D8AE0004A990 /* SubViews */,
 				17996A932781D4CE00A0800D /* MedAssistantApp.swift */,
@@ -114,6 +132,8 @@
 				17B7E34627C0DB800004A990 /* TemperatureView.swift */,
 				17D18A4F27E222A000D0B9DD /* WeightView.swift */,
 				172C12BE27E38564005E1EB0 /* SymptomsView.swift */,
+				172AB2DE27EBA0E50062634B /* CalendarView.swift */,
+				172AB2E127EBC3AD0062634B /* CustomDatePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,16 +209,20 @@
 			files = (
 				172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */,
 				17F4A2B527B56A2A002608EC /* Model.swift in Sources */,
+				172AB2E227EBC3AD0062634B /* CustomDatePickerView.swift in Sources */,
 				17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */,
 				17B7E33D27C0CFED0004A990 /* OptionButton.swift in Sources */,
+				17BFCAA427EBC8C3000CDFF0 /* DateValue.swift in Sources */,
 				17B7E34527C0D9400004A990 /* LoginView.swift in Sources */,
 				17996A962781D4CE00A0800D /* ContentView.swift in Sources */,
 				17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */,
 				17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */,
+				172AB2DF27EBA0E50062634B /* CalendarView.swift in Sources */,
 				172C12C127E3942E005E1EB0 /* SymptomRow.swift in Sources */,
 				17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */,
 				17B7E34127C0D8E40004A990 /* ChatView.swift in Sources */,
 				17996A942781D4CE00A0800D /* MedAssistantApp.swift in Sources */,
+				17BFCAA627EBD316000CDFF0 /* DrugTake.swift in Sources */,
 				170D3E5D278DE380008F753C /* BotResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
