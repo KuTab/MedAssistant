@@ -27,6 +27,11 @@ struct MainView: View {
                     HStack {
                         OptionButton(title: "Symptoms", titleFontSize: 20, imageName: "thermometer", destination: SymptomsView(), startColor: .green, endColor: .teal)
                     }
+                    
+                    HStack {
+                        OptionButton(title: "Calendar", titleFontSize: 20, imageName: "calendar",
+                                     destination: CalendarView(), startColor: .purple, endColor: .indigo)
+                    }
                 }
             }.navigationBarHidden(true)
         }.accentColor(.white)

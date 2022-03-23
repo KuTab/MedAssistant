@@ -36,7 +36,7 @@ struct CalendarView: View {
                 .padding(.top, 10)
                 .foregroundColor(.white)
                 .background(.ultraThinMaterial)
-        }
+        }.navigationBarTitle("", displayMode: .inline)
     }
 }
 

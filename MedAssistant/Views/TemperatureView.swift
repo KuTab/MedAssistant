@@ -33,7 +33,7 @@ struct TemperatureView: View {
                     
                     HStack(spacing: 0) {
                         Picker("", selection: $temperature) {
-                            ForEach(34..<41, id: \.self) { num in
+                            ForEach(34..<43, id: \.self) { num in
                                 Text("\(num).")
                                     .foregroundColor(.white)
                             }
