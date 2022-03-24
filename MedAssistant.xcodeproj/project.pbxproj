@@ -17,6 +17,8 @@
 		17996A962781D4CE00A0800D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17996A952781D4CE00A0800D /* ContentView.swift */; };
 		17996A982781D4D100A0800D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17996A972781D4D100A0800D /* Assets.xcassets */; };
 		17996A9B2781D4D100A0800D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17996A9A2781D4D100A0800D /* Preview Assets.xcassets */; };
+		179FBA8A27ECCC66001BBBBA /* HealthRecords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 179FBA8827ECCC66001BBBBA /* HealthRecords.xcdatamodeld */; };
+		179FBA8C27ECCD21001BBBBA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179FBA8B27ECCD21001BBBBA /* DataController.swift */; };
 		17B7E33D27C0CFED0004A990 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E33C27C0CFED0004A990 /* OptionButton.swift */; };
 		17B7E34127C0D8E40004A990 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34027C0D8E40004A990 /* ChatView.swift */; };
 		17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34227C0D9040004A990 /* SurveyView.swift */; };
@@ -41,6 +43,8 @@
 		17996A972781D4D100A0800D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17996A9A2781D4D100A0800D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17996A9C2781D4D100A0800D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		179FBA8927ECCC66001BBBBA /* HealthRecords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthRecords.xcdatamodel; sourceTree = "<group>"; };
+		179FBA8B27ECCD21001BBBBA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		17B7E33C27C0CFED0004A990 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		17B7E34027C0D8E40004A990 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		17B7E34227C0D9040004A990 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 		17996A922781D4CE00A0800D /* MedAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				179FBA8727ECCC47001BBBBA /* CoreData */,
 				172AB2E027EBC1900062634B /* Model */,
 				17B7E33F27C0D8CB0004A990 /* Views */,
 				17B7E33E27C0D8AE0004A990 /* SubViews */,
@@ -111,6 +116,15 @@
 				17996A9A2781D4D100A0800D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		179FBA8727ECCC47001BBBBA /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				179FBA8827ECCC66001BBBBA /* HealthRecords.xcdatamodeld */,
+				179FBA8B27ECCD21001BBBBA /* DataController.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		17B7E33E27C0D8AE0004A990 /* SubViews */ = {
@@ -212,11 +226,13 @@
 				172AB2E227EBC3AD0062634B /* CustomDatePickerView.swift in Sources */,
 				17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */,
 				17B7E33D27C0CFED0004A990 /* OptionButton.swift in Sources */,
+				179FBA8C27ECCD21001BBBBA /* DataController.swift in Sources */,
 				17BFCAA427EBC8C3000CDFF0 /* DateValue.swift in Sources */,
 				17B7E34527C0D9400004A990 /* LoginView.swift in Sources */,
 				17996A962781D4CE00A0800D /* ContentView.swift in Sources */,
 				17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */,
 				17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */,
+				179FBA8A27ECCC66001BBBBA /* HealthRecords.xcdatamodeld in Sources */,
 				172AB2DF27EBA0E50062634B /* CalendarView.swift in Sources */,
 				172C12C127E3942E005E1EB0 /* SymptomRow.swift in Sources */,
 				17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */,
@@ -412,6 +428,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		179FBA8827ECCC66001BBBBA /* HealthRecords.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				179FBA8927ECCC66001BBBBA /* HealthRecords.xcdatamodel */,
+			);
+			currentVersion = 179FBA8927ECCC66001BBBBA /* HealthRecords.xcdatamodel */;
+			path = HealthRecords.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 17996A882781D4CE00A0800D /* Project object */;
 }

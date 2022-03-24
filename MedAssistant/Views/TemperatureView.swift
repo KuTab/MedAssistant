@@ -17,6 +17,11 @@ struct TemperatureView: View {
     @State private var temperature: Int = 36
     @State private var temperatureDecimal: Int = 6
     
+    //all Health records about temperature
+    @FetchRequest(sortDescriptors: []) private var temperatureData: FetchedResults<Temperature>
+    @Environment(\.managedObjectContext) var moc
+    
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -74,6 +79,13 @@ struct TemperatureView: View {
     }
     
     func doneMonitoring() {
+        let todayTemperature = Temperature(context: moc)
+        todayTemperature.value = Double(temperature) + Double(temperatureDecimal) * 0.1
+        todayTemperature.date = Date.now
+        
+        //can throw exception
+        try? moc.save()
+        
         presentationMode.wrappedValue.dismiss()
     }
 }

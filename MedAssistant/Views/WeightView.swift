@@ -11,6 +11,10 @@ struct WeightView: View {
     @State private var weight: Int = 75
     @State private var weightDecimal: Int = 5
     
+    //all Health records about weight
+    @FetchRequest(sortDescriptors: []) private var weightData: FetchedResults<Weight>
+    @Environment(\.managedObjectContext) var moc
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -68,6 +72,13 @@ struct WeightView: View {
     }
     
     func doneMonitoring() {
+        let todayWeight = Weight(context: moc)
+        todayWeight.value = Double(weight) + Double(weightDecimal) * 0.1
+        todayWeight.date = Date.now
+        
+        //can throw exception
+        try? moc.save()
+        
         presentationMode.wrappedValue.dismiss()
     }
 }
