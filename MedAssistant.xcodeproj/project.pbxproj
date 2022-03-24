@@ -70,6 +70,7 @@
 		172AB2E027EBC1900062634B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				170D3E5C278DE380008F753C /* BotResponse.swift */,
 				17F4A2B427B56A2A002608EC /* Model.swift */,
 				17BFCAA327EBC8C3000CDFF0 /* DateValue.swift */,
 				17BFCAA527EBD316000CDFF0 /* DrugTake.swift */,
@@ -104,7 +105,6 @@
 				17996A972781D4D100A0800D /* Assets.xcassets */,
 				17996A9C2781D4D100A0800D /* Info.plist */,
 				17996A992781D4D100A0800D /* Preview Content */,
-				170D3E5C278DE380008F753C /* BotResponse.swift */,
 				17788DDE27A4B36800ADEA1B /* LoginViewModel.swift */,
 			);
 			path = MedAssistant;
