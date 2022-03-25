@@ -31,10 +31,10 @@ struct CalendarView: View {
                         .padding(.vertical)
                         .frame(maxWidth: .infinity)
                         .background(Color.green, in: Capsule())
+                        .foregroundColor(.white)
                 }
             }.padding(.horizontal)
                 .padding(.top, 10)
-                .foregroundColor(.white)
                 .background(.ultraThinMaterial)
         }.navigationBarTitle("", displayMode: .inline)
     }
