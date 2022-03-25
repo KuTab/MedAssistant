@@ -74,6 +74,7 @@ struct ChatView: View {
                     sendMessage(message: messageText)
                 } label:{
                     Image(systemName: "paperplane.fill")
+                        .foregroundColor(Color.blue)
                 }
                 .font(.system(size: 26))
                 .padding(.horizontal, 10)

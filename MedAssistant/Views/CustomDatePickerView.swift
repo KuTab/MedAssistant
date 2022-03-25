@@ -41,6 +41,7 @@ struct CustomDatePickerView: View {
                 } label: {
                     Image(systemName: "chevron.left")
                         .font(.title2)
+                        .foregroundColor(Color.blue)
                 }
                 
                 Button {
@@ -51,6 +52,7 @@ struct CustomDatePickerView: View {
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.title2)
+                        .foregroundColor(Color.blue)
                 }
             }
             .padding(.horizontal)
