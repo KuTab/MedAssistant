@@ -24,9 +24,9 @@ struct SurveyView: View {
     @State private var picker1: String = ""
     
     var body: some View {
-        ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing)
-                .ignoresSafeArea(.all)
+        //ZStack {
+           //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing)
+                //.ignoresSafeArea(.all)
             
             VStack {
                 Text("Оцените ваше самочувствие")
@@ -56,8 +56,8 @@ struct SurveyView: View {
                 .background(.green.opacity(0.8))
                 .cornerRadius(20)
                 .foregroundColor(.white)
-            }
-        }.navigationBarTitle("", displayMode: .inline)
+            }.navigationBarTitle("", displayMode: .inline)
+        //}.navigationBarTitle("", displayMode: .inline)
     }
 }
 

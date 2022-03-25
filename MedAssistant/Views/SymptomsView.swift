@@ -12,6 +12,7 @@ struct SymptomsView: View {
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white
     }
     
     var body: some View {

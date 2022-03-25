@@ -18,14 +18,16 @@ struct WeightView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        GeometryReader {geometry in
-            ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
-                VStack {
+        GeometryReader { geometry in
+            //ZStack {
+                //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
+            VStack {
                     Text("Weight")
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)//.white
                         .font(.system(size: 60))
                         .bold()
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
+                
                     Spacer()
                     
                     HStack(spacing: 0) {
@@ -33,7 +35,7 @@ struct WeightView: View {
                         Picker("", selection: $weight) {
                             ForEach(0..<150, id: \.self) { num in
                                 Text("\(num).")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)//.white
                             }
                         }.pickerStyle(.wheel)
                             .frame(width: geometry.size.width/3, height: 100)
@@ -44,14 +46,14 @@ struct WeightView: View {
                         Picker("", selection: $weightDecimal) {
                             ForEach(0..<10, id: \.self) { num in
                                 Text("\(num)")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)//.white
                             }
                         }.pickerStyle(.wheel)
                             .frame(width: geometry.size.width/3, height: 100)
                             .compositingGroup()
                             .clipped()
                             .padding(.horizontal)
-                    }.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.white, lineWidth: 4))
+                    }.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 4))//.white
                     
                     Spacer()
                     
@@ -60,14 +62,14 @@ struct WeightView: View {
                         Text("Done")
                             .font(.system(size: 30))
                             .bold()
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)//.white
                             .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth:  4))
+                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.black, lineWidth:  4))//.white
                         
                         
                     })
-                }
-            }.navigationBarTitle("", displayMode: .inline)
+                }.navigationBarTitle("", displayMode: .inline)
+            //}.navigationBarTitle("", displayMode: .inline)
         }
     }
     

@@ -26,13 +26,14 @@ struct TemperatureView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
-                VStack {
+            //ZStack {
+                //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
+            VStack() {
                     Text("Temperature")
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)//.white
                         .font(.system(size: 60))
                         .bold()
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
                     
                     Spacer()
                     
@@ -40,7 +41,7 @@ struct TemperatureView: View {
                         Picker("", selection: $temperature) {
                             ForEach(34..<43, id: \.self) { num in
                                 Text("\(num).")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)//.white
                             }
                         }.pickerStyle(.wheel)
                             .frame(width: geometry.size.width/3, height: 100)
@@ -51,30 +52,32 @@ struct TemperatureView: View {
                         Picker("", selection: $temperatureDecimal) {
                             ForEach(0..<10, id: \.self) { num in
                                 Text("\(num)")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)//.white
                             }
                         }.pickerStyle(.wheel)
                             .frame(width: geometry.size.width/3, height: 100)
                             .compositingGroup()
                             .clipped()
                             .padding(.horizontal)
-                    }.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.white, lineWidth: 4))
+                    }.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 4))//.white
                     
                     Spacer()
                     
+                //todo rework button style
                     Button(action: doneMonitoring,
                            label: {
                         Text("Done")
                             .font(.system(size: 30))
                             .bold()
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)//.white
                             .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth:  4))
+                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.black, lineWidth:  4))//.white
                         
                         
                     })
-                }
-            }.navigationBarTitle("", displayMode: .inline)
+                }.navigationBarTitle("", displayMode: .inline)
+
+            //}.navigationBarTitle("", displayMode: .inline) ZStack
         }
     }
     

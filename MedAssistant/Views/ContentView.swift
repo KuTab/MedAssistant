@@ -48,7 +48,7 @@ struct MainView: View {
                     }
                 }
             }.navigationBarHidden(true)
-        }.accentColor(.white)
+        }
     }
 }
 

@@ -16,19 +16,19 @@ struct ChatView: View {
     @State var messages: [String] = ["Welcome to chat bot"]
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Text("Chat bot")
                     .font(.largeTitle)
                     .bold()
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.blue)//white
                 
                 Image(systemName: "bubble.left.fill")
                     .font(.system(size: 26))
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.blue)//white
                 
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
-                .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing))//HSTACK
+                .background(Color.gray.opacity(0.1))//(LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]), startPoint: .bottomLeading, endPoint: .topTrailing))//HSTACK
             
             ScrollView {
                 //Messages
