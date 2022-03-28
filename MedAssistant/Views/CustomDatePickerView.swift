@@ -105,7 +105,7 @@ struct CustomDatePickerView: View {
                         
                         VStack(alignment: .leading, spacing: 10) {
                             
-                            Text(drugTake.unwrappedTime.addingTimeInterval(CGFloat.random(in: 0...5000)), style: .time)
+                            Text(drugTake.unwrappedTime, style: .time)
                             
                             Text(drugTake.unwrappedTiltle)
                                 .font(.title2.bold())
