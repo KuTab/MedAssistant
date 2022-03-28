@@ -1,23 +1,30 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  MedAssistant
 //
-//  Created by Egor Dadugin on 19.02.2022.
+//  Created by Egor Dadugin on 28.03.2022.
 //
 
-import Foundation
 import SwiftUI
 
-struct LoginView: View {
-    
+struct RegisterView: View {
     @ObservedObject var viewModel: LoginViewModel
-    
     var body: some View {
         HStack {
+            
             Spacer()
             
             VStack {
                 VStack{
+                    Text("Name")
+                    TextField("Enter name", text: $viewModel.name)
+                    
+                    Text("Surname")
+                    TextField("Enter surname", text: $viewModel.surname)
+                    
+                    Text("Patronymic")
+                    TextField("Enter patronymic", text: $viewModel.patronymic)
+                    
                     Text("Phone")
                     TextField("Enter phone number", text: $viewModel.phone)
                         .keyboardType(.emailAddress)
@@ -25,6 +32,7 @@ struct LoginView: View {
                     
                     Text("Password")
                     SecureField("Enter password", text: $viewModel.password)
+                    
                 }
                 .padding()
                 .textFieldStyle(.roundedBorder)
@@ -34,8 +42,8 @@ struct LoginView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
-                    Button("Sign In") {
-                        viewModel.signIn()
+                    Button("Register") {
+                        viewModel.register()
                     }
                     .padding()
                     .background(.green.opacity(0.8))
@@ -52,8 +60,8 @@ struct LoginView: View {
     }
 }
 
-struct LogineView_Previews: PreviewProvider {
+struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewModel: LoginViewModel())
+        RegisterView(viewModel: LoginViewModel())
     }
 }

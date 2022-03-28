@@ -23,16 +23,25 @@ struct CalendarView: View {
             
             HStack {
                 
-                Button {
-                    //ToDo
-                } label: {
+                NavigationLink(destination: AddDrugTakeView()){
                     Text("Add Drug")
                         .fontWeight(.bold)
                         .padding(.vertical)
                         .frame(maxWidth: .infinity)
                         .background(Color.green, in: Capsule())
                         .foregroundColor(.white)
-                }
+                }//.frame(minWidth: 0, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity,  alignment: .center)
+                
+                //                Button {
+                //                    //ToDo
+                //                } label: {
+                //                    Text("Add Drug")
+                //                        .fontWeight(.bold)
+                //                        .padding(.vertical)
+                //                        .frame(maxWidth: .infinity)
+                //                        .background(Color.green, in: Capsule())
+                //                        .foregroundColor(.white)
+                //                }
             }.padding(.horizontal)
                 .padding(.top, 10)
                 .background(.ultraThinMaterial)

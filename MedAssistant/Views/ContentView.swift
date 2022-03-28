@@ -60,9 +60,12 @@ struct ContentView: View {
         if loginVM.isLoggedIn {
                 
                 MainView()
-        } else {
+        } else if loginVM.isRegistered {
             
             LoginView(viewModel: loginVM)
+        } else {
+            
+            RegisterView(viewModel: loginVM)
         }
     }
 }

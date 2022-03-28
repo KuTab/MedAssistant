@@ -10,6 +10,10 @@ import SwiftUI
 struct CustomDatePickerView: View {
     @Binding var currentDate: Date
     
+    //all Health records about drugTakeMetaData
+    @FetchRequest(sortDescriptors: []) private var drugTakeMD: FetchedResults<DrugTakeMetaDataCD>
+    @Environment(\.managedObjectContext) var moc
+    
     //Month update on arrow button
     @State var currentMonth: Int = 0
     
@@ -93,17 +97,17 @@ struct CustomDatePickerView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 20)
                 
-                if let drugTake = drugTakes.first(where: { drugTake in
-                    return isSameDay(date1: drugTake.drugTakeDate, date2: currentDate)
+                if let drugTake = drugTakeMD.first(where: { drugTake in
+                    return isSameDay(date1: drugTake.unwrappedDate, date2: currentDate)
                 }){
                     
-                    ForEach(drugTake.drugTakes){ drugTake in
+                    ForEach(drugTake.drugTakesArray){ drugTake in
                         
                         VStack(alignment: .leading, spacing: 10) {
                             
-                            Text(drugTake.time.addingTimeInterval(CGFloat.random(in: 0...5000)), style: .time)
+                            Text(drugTake.unwrappedTime.addingTimeInterval(CGFloat.random(in: 0...5000)), style: .time)
                             
-                            Text(drugTake.title)
+                            Text(drugTake.unwrappedTiltle)
                                 .font(.title2.bold())
                         }.padding(.vertical, 10)
                             .padding(.horizontal)
@@ -129,19 +133,19 @@ struct CustomDatePickerView: View {
         VStack {
             
             if value.day != -1 {
-                if let drugTake = drugTakes.first(where: { drugTake in
+                if let drugTake = drugTakeMD.first(where: { drugTake in
                     
-                    return isSameDay(date1: drugTake.drugTakeDate, date2: value.date)
+                    return isSameDay(date1: drugTake.unwrappedDate, date2: value.date)
                 }){
                     Text("\(value.day)")
                         .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: drugTake.drugTakeDate, date2: currentDate) ? Color.white : Color.primary)
+                        .foregroundColor(isSameDay(date1: drugTake.unwrappedDate, date2: currentDate) ? Color.white : Color.primary)
                         .frame(maxWidth: .infinity)
                     
                     Spacer()
                     
                     Circle()
-                        .fill(isSameDay(date1: drugTake.drugTakeDate, date2: currentDate) ? Color.white : Color.pink)
+                        .fill(isSameDay(date1: drugTake.unwrappedDate, date2: currentDate) ? Color.white : Color.pink)
                         .frame(width: 8, height: 8)
                 } else {
                     Text("\(value.day)")
