@@ -57,6 +57,7 @@ struct AddDrugTakeView: View {
                     .foregroundColor(.white)
             }).padding()
             
+            //MARK: - for development only
             Button (action: removeAllData,
                     label: {
                 Text("Clear Data")
@@ -77,40 +78,52 @@ struct AddDrugTakeView: View {
     
     func addDrug() {
         let calendar = Calendar.current
+        var totalDate = startDate
         
-        for currentDrugTime in drugTime {
-            print("save")
+        //while loop for getting all dates in range of drug taking
+        while totalDate <= endDate {
             
-            let newDrugTake = DrugTakeCD(context: moc)
-            
-            newDrugTake.id = UUID()
-            newDrugTake.title = drugTitle
-            
-            let parseTime = calendar.dateComponents([.minute, .hour], from: currentDrugTime)
-            var totalDate = startDate
-            totalDate = calendar.date(bySetting: .hour, value: parseTime.hour!, of: totalDate)!
-            totalDate = calendar.date(bySetting: .minute, value: parseTime.minute! , of: totalDate)!
-            
-            newDrugTake.time = totalDate
-            print(startDate)
-            print(totalDate)
-            print(currentDrugTime)
-            
-            if let drugTakeMD = drugTakeMD.first(where: { drugTake in
-                return isSameDay(date1: drugTake.unwrappedDate, date2: totalDate)
-            }) {
+            //for loop for adding all drug takes a day
+            for currentDrugTime in drugTime {
+//                print("save")
                 
-                drugTakeMD.addToDrugTakesCD(newDrugTake)
-                print(drugTakeMD.drugTakesArray)
-            } else {
+                let newDrugTake = DrugTakeCD(context: moc)
                 
-                let newDrugTakeMd = DrugTakeMetaDataCD(context: moc)
-                newDrugTakeMd.id = UUID()
-                newDrugTakeMd.date = totalDate //calendar.dateComponents([.day, .month, .year], from: drugTime).date
-                newDrugTakeMd.addToDrugTakesCD(newDrugTake)
+                newDrugTake.id = UUID()
+                newDrugTake.title = drugTitle
+                
+                let parseTime = calendar.dateComponents([.minute, .hour], from: currentDrugTime)
+                
+                totalDate = calendar.date(bySetting: .hour, value: parseTime.hour!, of: totalDate)!
+                totalDate = calendar.date(bySetting: .minute, value: parseTime.minute! , of: totalDate)!
+                
+                newDrugTake.time = totalDate
+//                print(startDate)
+                print(parseTime)
+                print(totalDate)
+//                print(currentDrugTime)
+                
+                if let drugTakeMD = drugTakeMD.first(where: { drugTake in
+                    return isSameDay(date1: drugTake.unwrappedDate, date2: totalDate)
+                }) {
+                    
+                    drugTakeMD.addToDrugTakesCD(newDrugTake)
+//                    print(drugTakeMD.drugTakesArray)
+                } else {
+                    
+                    let newDrugTakeMd = DrugTakeMetaDataCD(context: moc)
+                    newDrugTakeMd.id = UUID()
+                    newDrugTakeMd.date = totalDate //calendar.dateComponents([.day, .month, .year], from: drugTime).date
+                    newDrugTakeMd.addToDrugTakesCD(newDrugTake)
+                }
+                
+                try? moc.save()
             }
-         
-            try? moc.save()
+            
+            //increasing date
+            totalDate = calendar.date(byAdding: .day, value: 1, to: totalDate)!
+            totalDate = calendar.startOfDay(for: totalDate)
+            print(totalDate)
         }
         
         presentationMode.wrappedValue.dismiss()
