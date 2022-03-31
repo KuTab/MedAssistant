@@ -22,7 +22,7 @@ struct CustomDatePickerView: View {
         VStack(spacing: 35) {
             
             //Days
-            let days: [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            let days: [String] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
             
             HStack(spacing: 20) {
                 
@@ -207,11 +207,20 @@ struct CustomDatePickerView: View {
             return DateValue(day: day, date: date)
         }
         
+        //print(days)
+        
         //adding offset days to get exact week day
         let firstWeekDay = calendar.component(.weekday, from: days.first?.date ?? Date())
+        print(firstWeekDay)
         
-        for _ in 0..<firstWeekDay - 1 {
-            days.insert(DateValue(day: -1, date: Date()), at: 0)
+        if firstWeekDay != 1 {
+            for _ in 0..<firstWeekDay-2 {
+                days.insert(DateValue(day: -1, date: Date()), at: 0)
+            }
+        } else {
+            for _ in 0..<6 {
+                days.insert(DateValue(day: -1, date: Date()), at: 0)
+            }
         }
         
         return days

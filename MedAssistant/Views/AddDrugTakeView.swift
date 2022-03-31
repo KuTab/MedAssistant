@@ -13,6 +13,14 @@ struct AddDrugTakeView: View {
     @State var endDate: Date = Date.now
     @State var drugTime: [Date] = [Date.now]
     @State var numADay: Int = 1
+    @State var daysOfTakes: String = "Everyday"
+    @State var daysSelected: [Bool] = [Bool](repeating: false, count: 7)
+    
+    //addition to a date for next drug take
+    @State var daysAddition: Int = 1
+    //options for days of take
+    let optionValues = ["Everyday", "In one day", "Select Days"]
+    let days = ["M", "T", "W", "T", "F", "S", "S"]
     
     @FetchRequest(sortDescriptors: []) private var drugTakeMD: FetchedResults<DrugTakeMetaDataCD>
     @FetchRequest(sortDescriptors: []) private var drugTake: FetchedResults<DrugTakeCD>
@@ -21,12 +29,18 @@ struct AddDrugTakeView: View {
     
     var body: some View {
         VStack{
-            HStack{
+            HStack {
                 Text("Title:")
                 TextField("Enter drug title", text: $drugTitle)
             }.padding()
                 .textFieldStyle(.roundedBorder)
             
+            HStack {
+                ForEach(days.indices, id: \.self) { index in
+                    DayButton(isSelected: $daysSelected[index], dayName: days[index])
+                        .frame(maxWidth: .infinity)
+                }
+            }.padding()
             
             DatePicker("Start date", selection: $startDate, displayedComponents: .date)
                 .padding()
@@ -41,13 +55,20 @@ struct AddDrugTakeView: View {
                 }
             }
             
+            Picker("Days of take", selection: $daysOfTakes) {
+                ForEach(optionValues, id: \.self) { option in
+                    Text(option)
+                        .foregroundColor(.black)
+                }
+            }
+            
             ForEach(drugTime.indices, id: \.self) { index in
                 DatePicker("Time", selection: $drugTime[index], displayedComponents: .hourAndMinute)
                     .padding()
                 
             }
             
-            Button (action: addDrug,
+            Button (action: daysOfTakes == "Select Days" ? addDrugByDaysSelected : addDrug,
                     label: {
                 Text("Add")
                     .fontWeight(.bold)
@@ -74,9 +95,26 @@ struct AddDrugTakeView: View {
                 
                 drugTime = [Date](repeating: Date.now, count: newValue)
             }
+            .onChange(of: daysOfTakes) { newValue in
+                switch newValue {
+                case "Everyday":
+                    daysAddition = 1
+                    
+                case "In one day":
+                    daysAddition = 2
+                    
+                case "Select days":
+                    daysAddition = 1
+                    
+                default:
+                    daysAddition = 1
+                    
+                }
+            }
     }
     
     func addDrug() {
+        print("add drug")
         let calendar = Calendar.current
         var totalDate = startDate
         
@@ -85,7 +123,7 @@ struct AddDrugTakeView: View {
             
             //for loop for adding all drug takes a day
             for currentDrugTime in drugTime {
-//                print("save")
+                //                print("save")
                 
                 let newDrugTake = DrugTakeCD(context: moc)
                 
@@ -98,17 +136,17 @@ struct AddDrugTakeView: View {
                 totalDate = calendar.date(bySetting: .minute, value: parseTime.minute! , of: totalDate)!
                 
                 newDrugTake.time = totalDate
-//                print(startDate)
+                //                print(startDate)
                 print(parseTime)
                 print(totalDate)
-//                print(currentDrugTime)
+                //                print(currentDrugTime)
                 
                 if let drugTakeMD = drugTakeMD.first(where: { drugTake in
                     return isSameDay(date1: drugTake.unwrappedDate, date2: totalDate)
                 }) {
                     
                     drugTakeMD.addToDrugTakesCD(newDrugTake)
-//                    print(drugTakeMD.drugTakesArray)
+                    //                    print(drugTakeMD.drugTakesArray)
                 } else {
                     
                     let newDrugTakeMd = DrugTakeMetaDataCD(context: moc)
@@ -121,7 +159,66 @@ struct AddDrugTakeView: View {
             }
             
             //increasing date
-            totalDate = calendar.date(byAdding: .day, value: 1, to: totalDate)!
+            totalDate = calendar.date(byAdding: .day, value: daysAddition, to: totalDate)!
+            totalDate = calendar.startOfDay(for: totalDate)
+            print(totalDate)
+        }
+        
+        presentationMode.wrappedValue.dismiss()
+    }
+    
+    func addDrugByDaysSelected() {
+        let calendar = Calendar.current
+        var totalDate = startDate
+        let chosenDaysOfWeek = parseDayNumbers(chosenDays: daysSelected)
+        print(chosenDaysOfWeek)
+        
+        while totalDate <= endDate {
+            for chosenDayNumber in chosenDaysOfWeek {
+                totalDate = calendar.date(bySetting: .weekday, value: chosenDayNumber, of: totalDate)!
+                print(totalDate)
+                
+                for currentDrugTime in drugTime {
+                    //                print("save")
+                    
+                    let newDrugTake = DrugTakeCD(context: moc)
+                    
+                    newDrugTake.id = UUID()
+                    newDrugTake.title = drugTitle
+                    
+                    let parseTime = calendar.dateComponents([.minute, .hour], from: currentDrugTime)
+                    
+                    totalDate = calendar.date(bySetting: .hour, value: parseTime.hour!, of: totalDate)!
+                    totalDate = calendar.date(bySetting: .minute, value: parseTime.minute! , of: totalDate)!
+                    
+                    newDrugTake.time = totalDate
+                    //                print(startDate)
+//                    print(parseTime)
+//                    print(totalDate)
+                    //                print(currentDrugTime)
+                    
+                    if let drugTakeMD = drugTakeMD.first(where: { drugTake in
+                        return isSameDay(date1: drugTake.unwrappedDate, date2: totalDate)
+                    }) {
+                        
+                        drugTakeMD.addToDrugTakesCD(newDrugTake)
+                        //                    print(drugTakeMD.drugTakesArray)
+                    } else {
+                        
+                        let newDrugTakeMd = DrugTakeMetaDataCD(context: moc)
+                        newDrugTakeMd.id = UUID()
+                        newDrugTakeMd.date = totalDate //calendar.dateComponents([.day, .month, .year], from: drugTime).date
+                        newDrugTakeMd.addToDrugTakesCD(newDrugTake)
+                    }
+                    
+                    try? moc.save()
+                }
+                
+            }
+            
+            print(totalDate)
+            //switch to the next week
+            totalDate = calendar.nextDate(after: totalDate, matching: DateComponents(weekday: calendar.firstWeekday), matchingPolicy: .nextTime)!
             totalDate = calendar.startOfDay(for: totalDate)
             print(totalDate)
         }
@@ -133,6 +230,23 @@ struct AddDrugTakeView: View {
         let calendar = Calendar.current
         
         return calendar.isDate(date1, inSameDayAs: date2)
+    }
+    
+    func parseDayNumbers(chosenDays: [Bool]) -> [Int] {
+        var result: [Int] = []
+        
+        for index in chosenDays.indices {
+            if chosenDays[index] {
+                result.append(index + 2)
+            }
+        }
+        
+        if result.contains(8) {
+            result.removeLast()
+            result.insert(1, at: 0)
+        }
+        
+        return result
     }
     
     //MARK: - for development only
