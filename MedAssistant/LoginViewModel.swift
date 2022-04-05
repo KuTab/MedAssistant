@@ -19,6 +19,10 @@ final class LoginViewModel: ObservableObject {
     @Published var name = ""
     @Published var surname = ""
     @Published var patronymic = ""
+    @Published var preRegistered = false
+    @Published var confirmationCode = ""
+    
+    //private var receivedCode = ""
     
     
     var canSignIn: Bool {
@@ -53,11 +57,46 @@ final class LoginViewModel: ObservableObject {
             return
         }
         
-        isRegistered = true
-        isLoggedIn = true
-        UserDefaults.standard.set(isLoggedIn, forKey: "IsLoggedIn")
-        UserDefaults.standard.set(isRegistered, forKey: "IsRegistered")
-        UserDefaults.standard.set(name, forKey: "name")
-        UserDefaults.standard.set(surname, forKey: "surname")
+        APIWorker.shared.registerRequest(username: name, surname: surname, patronymic: patronymic, phoneNumber: phone, password: password) { result in
+            
+            switch result {
+            case .success(let code):
+                print(code)
+                //self.receivedCode = code
+                
+            case .failure(_):
+                print("failure")
+            }
+        }
+        
+//        isRegistered = true
+//        isLoggedIn = true
+//        UserDefaults.standard.set(isLoggedIn, forKey: "IsLoggedIn")
+        preRegistered = true
+//        UserDefaults.standard.set(isRegistered, forKey: "IsRegistered")
+//        UserDefaults.standard.set(name, forKey: "name")
+//        UserDefaults.standard.set(surname, forKey: "surname")
+    }
+    
+    //MARK: - Function for phoneConfirmation
+    func confirm() {
+        
+        APIWorker.shared.confirmRequest(code: confirmationCode) { result in
+            switch result {
+            case .success(true):
+                self.isRegistered = true
+                self.isLoggedIn = true
+                UserDefaults.standard.set(self.isLoggedIn, forKey: "IsLoggedIn")
+                UserDefaults.standard.set(self.isRegistered, forKey: "IsRegistered")
+                UserDefaults.standard.set(self.name, forKey: "name")
+                UserDefaults.standard.set(self.surname, forKey: "surname")
+            case .success(false):
+                
+                print("Wrong code")
+            case .failure(_):
+                
+                print("failure")
+            }
+        }
     }
 }

@@ -51,6 +51,25 @@ struct RegisterView: View {
                     .foregroundColor(.white)
                 }
                 
+                if viewModel.preRegistered {
+                    VStack {
+                        VStack {
+                            Text("Confirmation code")
+                            TextField("Enter confirmation code", text: $viewModel.confirmationCode)
+                        }
+                        .padding()
+                        .textFieldStyle(.roundedBorder)
+                        
+                        Button("Confirm phone") {
+                            viewModel.confirm()
+                        }
+                        .padding()
+                        .background(.green.opacity(0.8))
+                        .cornerRadius(20)
+                        .foregroundColor(.white)
+                    }
+                }
+                
             }
             .padding(.horizontal, 30)
             .frame(maxWidth: 400.0)

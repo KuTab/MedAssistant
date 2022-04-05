@@ -50,6 +50,7 @@ struct SurveyView: View {
                 .padding(.horizontal,20)
                 Button("Далее") {
                     UserDefaults.standard.removeObject(forKey: "IsLoggedIn")
+                    UserDefaults.standard.removeObject(forKey: "IsRegistered")
                 }
                 .padding()
                 .frame(width: 200, height: 50, alignment: .center)
