@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct AddDrugTakeView: View {
     @State var drugTitle: String = ""
@@ -114,8 +115,17 @@ struct AddDrugTakeView: View {
     }
     
     func addDrug() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Notifications allowed")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
         print("add drug")
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "Europe/Moscow")!
         var totalDate = startDate
         
         //while loop for getting all dates in range of drug taking
@@ -130,12 +140,25 @@ struct AddDrugTakeView: View {
                 newDrugTake.id = UUID()
                 newDrugTake.title = drugTitle
                 
-                let parseTime = calendar.dateComponents([.minute, .hour], from: currentDrugTime)
+                let parseTime = calendar.dateComponents([.timeZone, .minute, .hour], from: currentDrugTime)
                 
                 totalDate = calendar.date(bySetting: .hour, value: parseTime.hour!, of: totalDate)!
                 totalDate = calendar.date(bySetting: .minute, value: parseTime.minute! , of: totalDate)!
                 
                 newDrugTake.time = totalDate
+                
+                let content = UNMutableNotificationContent()
+                content.title = drugTitle
+                content.subtitle = "It's time to take your medicine"
+                content.sound = UNNotificationSound.default
+                
+                let dateComponents = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: totalDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request)
                 //                print(startDate)
                 print(parseTime)
                 print(totalDate)
@@ -193,8 +216,8 @@ struct AddDrugTakeView: View {
                     
                     newDrugTake.time = totalDate
                     //                print(startDate)
-//                    print(parseTime)
-//                    print(totalDate)
+                    //                    print(parseTime)
+                    //                    print(totalDate)
                     //                print(currentDrugTime)
                     
                     if let drugTakeMD = drugTakeMD.first(where: { drugTake in

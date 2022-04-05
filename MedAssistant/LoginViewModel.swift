@@ -30,9 +30,21 @@ final class LoginViewModel: ObservableObject {
         guard canSignIn else {
             return
         }
-        
-        isLoggedIn = true
-        UserDefaults.standard.set(isLoggedIn, forKey: "IsLoggedIn")
+    
+        APIWorker.shared.loginRequest(username: phone, password: password) { result in
+            switch result {
+            case .success(true):
+                print("Successful authorization")
+                self.isLoggedIn = true
+                UserDefaults.standard.set(self.isLoggedIn, forKey: "IsLoggedIn")
+                
+            case .success(false):
+                print("error in loggining")
+                
+            case .failure(_):
+                print("failure")
+            }
+        }
     }
     
     // MARK: - Function performing registration
