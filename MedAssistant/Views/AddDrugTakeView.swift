@@ -128,6 +128,17 @@ struct AddDrugTakeView: View {
         calendar.timeZone = TimeZone(identifier: "Europe/Moscow")!
         var totalDate = startDate
         
+        APIWorker.shared.getUserID { result in
+            switch result {
+            case .success(let resultId) :
+                APIWorker.shared.sendNewDrug(id: resultId, name: drugTitle, startDate: convertDate(date: startDate), endDate: convertDate(date: endDate), numDays: "2", type: "tablet", dosage: "100")
+                print("Got an id and send request for adding drug")
+            case .failure(_) :
+                print()
+
+            }
+        }
+        
         //while loop for getting all dates in range of drug taking
         while totalDate <= endDate {
             
@@ -283,6 +294,12 @@ struct AddDrugTakeView: View {
             moc.delete(tempDrugTake)
             try? moc.save()
         }
+    }
+        
+    func convertDate (date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: date)
     }
 }
 
