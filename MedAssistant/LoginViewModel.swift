@@ -9,6 +9,9 @@ import Foundation
 import Combine
 
 final class LoginViewModel: ObservableObject {
+    
+    static let shared = LoginViewModel()
+    
     // MARK: - Properties
 
     @Published var phone = ""
