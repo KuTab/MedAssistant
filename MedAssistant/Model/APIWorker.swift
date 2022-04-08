@@ -233,4 +233,24 @@ final class APIWorker {
         dataTask.resume()
         
     }
+    
+    //MARK: - API Call to submit survey answers
+    func sendAnswers(id: Int, answers: [String]) {
+        guard let url = URL(string: "") else {
+            print("Wrong url")
+            return
+        }
+        
+        var answersBody = [[ : ]]
+        
+        for index in 0..<answers.count {
+            let currentAnswer = ["questionNr" : String(index + 1), "value" : answers[index]]
+            answersBody.append(currentAnswer)
+        }
+        
+        let json = ["patientId" : String(id), "answers" : answersBody] as [String : Any]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        
+    }
 }

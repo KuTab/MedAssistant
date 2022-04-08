@@ -22,43 +22,58 @@ enum Options: String, CaseIterable, Identifiable {
 
 struct SurveyView: View {
     @State private var picker1: String = ""
+    @State private var answers: [String] = Array(repeating: "0", count: 30)
+    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         //ZStack {
-           //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing)
-                //.ignoresSafeArea(.all)
-            
-            VStack {
-                Text("Оцените ваше самочувствие")
-                Picker("Оцените ваше самочувствие", selection: $picker1) {
-                    ForEach(Options.allCases) {
-                        option in Text(String(option.rawValue))
-                    }
+        //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing)
+        //.ignoresSafeArea(.all)
+        
+        VStack {
+            Text("Survey")
+                .font(.title)
+                .bold()
+            ScrollView{
+                ForEach(surveyQuestions.indices) { index in
+                    SurveyQuestionView(surveyQuestion: surveyQuestions[index], selectedValue: $answers[index])
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
                 }
-                .pickerStyle(.segmented)
-                .padding()
-                HStack {
-                    Text("Самочувствие\nплохое")
-                        .font(.system(size: 14))
-                        .multilineTextAlignment(.center)
-                    Spacer()
-                    Text("Самочувствие хорошее")
-                        .font(.system(size: 14))
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.vertical, 0)
-                .padding(.horizontal,20)
-                Button("Далее") {
-                    UserDefaults.standard.removeObject(forKey: "IsLoggedIn")
-                    UserDefaults.standard.removeObject(forKey: "IsRegistered")
-                }
-                .padding()
-                .frame(width: 200, height: 50, alignment: .center)
-                .background(.green.opacity(0.8))
-                .cornerRadius(20)
-                .foregroundColor(.white)
-            }.navigationBarTitle("", displayMode: .inline)
+            }.safeAreaInset(edge: .bottom) {
+                HStack{
+                    Button(action: submitAnswers,
+                           label: {
+                        Text("Submit")
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .background(.green.opacity(0.8))
+                            .cornerRadius(20)
+                            .foregroundColor(.white)
+                    })
+                }.padding(.horizontal)
+                    .padding(.top, 10)
+                .background(.ultraThinMaterial)
+            }
+        }.navigationBarTitle("", displayMode: .inline)
+            .onChange(of: picker1) { newValue in
+                print(newValue)
+            }
         //}.navigationBarTitle("", displayMode: .inline)
+    }
+    
+    func submitAnswers() {
+        APIWorker.shared.getUserID() { result in
+            switch result {
+            case .success(let resultId):
+                print()
+            case .failure(_):
+                print("failure")
+            }
+        }
+        
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
