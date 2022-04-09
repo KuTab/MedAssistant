@@ -77,6 +77,7 @@ struct WeightView: View {
         let todayWeight = Weight(context: moc)
         todayWeight.value = Double(weight) + Double(weightDecimal) * 0.1
         todayWeight.date = Date.now
+        todayWeight.id = UUID()
         
         //can throw exception
         try? moc.save()

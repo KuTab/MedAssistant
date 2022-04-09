@@ -85,6 +85,7 @@ struct TemperatureView: View {
         let todayTemperature = Temperature(context: moc)
         todayTemperature.value = Double(temperature) + Double(temperatureDecimal) * 0.1
         todayTemperature.date = Date.now
+        todayTemperature.id = UUID()
         
         //can throw exception
         try? moc.save()

@@ -92,7 +92,7 @@ struct CustomDatePickerView: View {
             
             VStack(spacing: 30) {
                 
-                Text("Drug takes")
+                Text("Events")
                     .font(.title2.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 20)
@@ -100,23 +100,56 @@ struct CustomDatePickerView: View {
                 if let drugTake = drugTakeMD.first(where: { drugTake in
                     return isSameDay(date1: drugTake.unwrappedDate, date2: currentDate)
                 }){
+                    Text("Drug takes")
+                        .font(.title3)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    ForEach(drugTake.drugTakesArray){ drugTake in
-                        
-                        VStack(alignment: .leading, spacing: 10) {
+                    if(!drugTake.drugTakesArray.isEmpty) {
+                        ForEach(drugTake.drugTakesArray) { drugTake in
                             
-                            Text(drugTake.unwrappedTime, style: .time)
-                            
-                            Text(drugTake.unwrappedTiltle)
-                                .font(.title2.bold())
-                        }.padding(.vertical, 10)
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.purple.opacity(0.5).cornerRadius(10))
+                            VStack(alignment: .leading, spacing: 10) {
+                                
+                                Text(drugTake.unwrappedTime, style: .time)
+                                
+                                Text(drugTake.unwrappedTiltle)
+                                    .font(.title2.bold())
+                            }.padding(.vertical, 10)
+                                .padding(.horizontal)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.purple.opacity(0.5).cornerRadius(10))
+                        }
+                    } else {
+                        Text("No drug takes")
                     }
+                    
+                    
+                    Text("Doctor visits")
+                        .font(.title3)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if(!drugTake.doctorVisitsArray.isEmpty){
+                        ForEach(drugTake.doctorVisitsArray) { doctorVisit in
+                            
+                            VStack(alignment: .leading, spacing: 10) {
+                                
+                                Text(doctorVisit.unwrappedDate, style: .time)
+                                
+                                Text(doctorVisit.unwrappedTiltle)
+                                    .font(.title2.bold())
+                            }.padding(.vertical, 10)
+                                .padding(.horizontal)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.orange.opacity(0.5).cornerRadius(10))
+                        }
+                    } else {
+                        Text("No doctor visits")
+                    }
+                    
                 } else {
                     
-                    Text("No drug takes")
+                    Text("No events")
                 }
             }.padding()
         }

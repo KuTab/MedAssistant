@@ -9,23 +9,26 @@ import SwiftUI
 
 struct SymptomRow: View {
     var symptom: String = "Test"
-    @State private var isOn: Bool = false
+    @Binding var isOn: Bool
     
     var body: some View {
         HStack{
             Toggle(isOn: $isOn, label: {
                 Text(symptom)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .font(.system(size: 30))
             }).padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
                 //.toggleStyle(.button)
         }
     }
 }
 
 struct SymptomRow_Previews: PreviewProvider {
+    @State static var previewTest: Bool = false
+    
     static var previews: some View {
-        SymptomRow()
+        SymptomRow(isOn: $previewTest)
             .previewLayout(.sizeThatFits)
     }
 }

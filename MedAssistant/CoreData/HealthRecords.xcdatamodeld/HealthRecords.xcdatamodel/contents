@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DoctorVisitCD" representedClassName="DoctorVisitCD" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="metaData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugTakeMetaDataCD" inverseName="doctorVisitsCD" inverseEntity="DrugTakeMetaDataCD"/>
+    </entity>
     <entity name="DrugTakeCD" representedClassName="DrugTakeCD" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -9,20 +15,24 @@
     <entity name="DrugTakeMetaDataCD" representedClassName="DrugTakeMetaDataCD" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="doctorVisitsCD" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DoctorVisitCD" inverseName="metaData" inverseEntity="DoctorVisitCD"/>
         <relationship name="drugTakesCD" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugTakeCD" inverseName="metaData" inverseEntity="DrugTakeCD"/>
     </entity>
-    <entity name="Temperature" representedClassName="Temperature" syncable="YES" codeGenerationType="class">
+    <entity name="Temperature" representedClassName="Temperature" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Weight" representedClassName="Weight" syncable="YES" codeGenerationType="class">
+    <entity name="Weight" representedClassName="Weight" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="DrugTakeCD" positionX="18" positionY="0" width="128" height="89"/>
-        <element name="DrugTakeMetaDataCD" positionX="27" positionY="18" width="128" height="74"/>
-        <element name="Temperature" positionX="-63" positionY="-18" width="130.792236328125" height="73"/>
-        <element name="Weight" positionX="107.1748657226562" positionY="-17.83560180664062" width="128" height="73"/>
+        <element name="DrugTakeMetaDataCD" positionX="27" positionY="18" width="128" height="89"/>
+        <element name="Temperature" positionX="-63" positionY="-18" width="130.792236328125" height="28"/>
+        <element name="Weight" positionX="107.1748657226562" positionY="-17.83560180664062" width="128" height="28"/>
+        <element name="DoctorVisitCD" positionX="18" positionY="27" width="128" height="89"/>
     </elements>
 </model>

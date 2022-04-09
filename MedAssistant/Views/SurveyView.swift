@@ -64,10 +64,11 @@ struct SurveyView: View {
     }
     
     func submitAnswers() {
+        print(answers)
         APIWorker.shared.getUserID() { result in
             switch result {
             case .success(let resultId):
-                print()
+                APIWorker.shared.sendAnswers(id: resultId, answers: answers)
             case .failure(_):
                 print("failure")
             }

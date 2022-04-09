@@ -10,8 +10,6 @@
 		170A608827F1FEC500062FA3 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A608727F1FEC500062FA3 /* RegisterView.swift */; };
 		170A609527F2178C00062FA3 /* DrugTakeCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A609127F2178C00062FA3 /* DrugTakeCD+CoreDataClass.swift */; };
 		170A609627F2178C00062FA3 /* DrugTakeCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A609227F2178C00062FA3 /* DrugTakeCD+CoreDataProperties.swift */; };
-		170A609727F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A609327F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataClass.swift */; };
-		170A609827F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A609427F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataProperties.swift */; };
 		170A609A27F220B000062FA3 /* AddDrugTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A609927F220B000062FA3 /* AddDrugTakeView.swift */; };
 		170CAF7627EDFBAA0099AD57 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CAF7527EDFBAA0099AD57 /* ProfileView.swift */; };
 		170CAF7827EDFD980099AD57 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CAF7727EDFD980099AD57 /* ProfileModel.swift */; };
@@ -39,6 +37,16 @@
 		17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7E34627C0DB800004A990 /* TemperatureView.swift */; };
 		17BFCAA427EBC8C3000CDFF0 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BFCAA327EBC8C3000CDFF0 /* DateValue.swift */; };
 		17BFCAA627EBD316000CDFF0 /* DrugTake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BFCAA527EBD316000CDFF0 /* DrugTake.swift */; };
+		17C5ED4A2801CAB500175411 /* Temperature+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED462801CAB500175411 /* Temperature+CoreDataClass.swift */; };
+		17C5ED4B2801CAB500175411 /* Temperature+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED472801CAB500175411 /* Temperature+CoreDataProperties.swift */; };
+		17C5ED4C2801CAB500175411 /* Weight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED482801CAB500175411 /* Weight+CoreDataClass.swift */; };
+		17C5ED4D2801CAB500175411 /* Weight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED492801CAB500175411 /* Weight+CoreDataProperties.swift */; };
+		17C5ED4F2801CD1300175411 /* AddDoctorVisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED4E2801CD1300175411 /* AddDoctorVisitView.swift */; };
+		17C5ED522801E58D00175411 /* DoctorVisitCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED502801E58D00175411 /* DoctorVisitCD+CoreDataClass.swift */; };
+		17C5ED532801E58D00175411 /* DoctorVisitCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED512801E58D00175411 /* DoctorVisitCD+CoreDataProperties.swift */; };
+		17C5ED562801E65800175411 /* DrugTakeMetaDataCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED542801E65800175411 /* DrugTakeMetaDataCD+CoreDataClass.swift */; };
+		17C5ED572801E65800175411 /* DrugTakeMetaDataCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED552801E65800175411 /* DrugTakeMetaDataCD+CoreDataProperties.swift */; };
+		17C5ED592801F17300175411 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5ED582801F17300175411 /* Symptom.swift */; };
 		17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D18A4F27E222A000D0B9DD /* WeightView.swift */; };
 		17F4A2B527B56A2A002608EC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F4A2B427B56A2A002608EC /* Model.swift */; };
 /* End PBXBuildFile section */
@@ -47,8 +55,6 @@
 		170A608727F1FEC500062FA3 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		170A609127F2178C00062FA3 /* DrugTakeCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTakeCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		170A609227F2178C00062FA3 /* DrugTakeCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTakeCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		170A609327F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTakeMetaDataCD+CoreDataClass.swift"; sourceTree = "<group>"; };
-		170A609427F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTakeMetaDataCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		170A609927F220B000062FA3 /* AddDrugTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrugTakeView.swift; sourceTree = "<group>"; };
 		170CAF7527EDFBAA0099AD57 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		170CAF7727EDFD980099AD57 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -78,6 +84,16 @@
 		17B7E34627C0DB800004A990 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
 		17BFCAA327EBC8C3000CDFF0 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		17BFCAA527EBD316000CDFF0 /* DrugTake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugTake.swift; sourceTree = "<group>"; };
+		17C5ED462801CAB500175411 /* Temperature+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temperature+CoreDataClass.swift"; sourceTree = "<group>"; };
+		17C5ED472801CAB500175411 /* Temperature+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temperature+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		17C5ED482801CAB500175411 /* Weight+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weight+CoreDataClass.swift"; sourceTree = "<group>"; };
+		17C5ED492801CAB500175411 /* Weight+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weight+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		17C5ED4E2801CD1300175411 /* AddDoctorVisitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoctorVisitView.swift; sourceTree = "<group>"; };
+		17C5ED502801E58D00175411 /* DoctorVisitCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DoctorVisitCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		17C5ED512801E58D00175411 /* DoctorVisitCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DoctorVisitCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		17C5ED542801E65800175411 /* DrugTakeMetaDataCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTakeMetaDataCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		17C5ED552801E65800175411 /* DrugTakeMetaDataCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTakeMetaDataCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		17C5ED582801F17300175411 /* Symptom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
 		17D18A4F27E222A000D0B9DD /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		17F4A2B427B56A2A002608EC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +121,7 @@
 				1721685B27FC364300C22D7C /* APIWorker.swift */,
 				178D331227FF377600CAA23F /* CurrentUserModel.swift */,
 				178D3314280098B300CAA23F /* SurveyQuestion.swift */,
+				17C5ED582801F17300175411 /* Symptom.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,10 +168,16 @@
 		179FBA8727ECCC47001BBBBA /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				17C5ED542801E65800175411 /* DrugTakeMetaDataCD+CoreDataClass.swift */,
+				17C5ED552801E65800175411 /* DrugTakeMetaDataCD+CoreDataProperties.swift */,
+				17C5ED502801E58D00175411 /* DoctorVisitCD+CoreDataClass.swift */,
+				17C5ED512801E58D00175411 /* DoctorVisitCD+CoreDataProperties.swift */,
+				17C5ED462801CAB500175411 /* Temperature+CoreDataClass.swift */,
+				17C5ED472801CAB500175411 /* Temperature+CoreDataProperties.swift */,
+				17C5ED482801CAB500175411 /* Weight+CoreDataClass.swift */,
+				17C5ED492801CAB500175411 /* Weight+CoreDataProperties.swift */,
 				170A609127F2178C00062FA3 /* DrugTakeCD+CoreDataClass.swift */,
 				170A609227F2178C00062FA3 /* DrugTakeCD+CoreDataProperties.swift */,
-				170A609327F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataClass.swift */,
-				170A609427F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataProperties.swift */,
 				179FBA8827ECCC66001BBBBA /* HealthRecords.xcdatamodeld */,
 				179FBA8B27ECCD21001BBBBA /* DataController.swift */,
 			);
@@ -187,6 +210,7 @@
 				170CAF7527EDFBAA0099AD57 /* ProfileView.swift */,
 				170A608727F1FEC500062FA3 /* RegisterView.swift */,
 				170A609927F220B000062FA3 /* AddDrugTakeView.swift */,
+				17C5ED4E2801CD1300175411 /* AddDoctorVisitView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,15 +285,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */,
+				17C5ED522801E58D00175411 /* DoctorVisitCD+CoreDataClass.swift in Sources */,
 				178D3315280098B300CAA23F /* SurveyQuestion.swift in Sources */,
 				17F4A2B527B56A2A002608EC /* Model.swift in Sources */,
 				172AB2E227EBC3AD0062634B /* CustomDatePickerView.swift in Sources */,
 				17788DDF27A4B36800ADEA1B /* LoginViewModel.swift in Sources */,
+				17C5ED4C2801CAB500175411 /* Weight+CoreDataClass.swift in Sources */,
 				17B7E33D27C0CFED0004A990 /* OptionButton.swift in Sources */,
 				179FBA8C27ECCD21001BBBBA /* DataController.swift in Sources */,
 				17BFCAA427EBC8C3000CDFF0 /* DateValue.swift in Sources */,
 				17B7E34527C0D9400004A990 /* LoginView.swift in Sources */,
+				17C5ED572801E65800175411 /* DrugTakeMetaDataCD+CoreDataProperties.swift in Sources */,
 				17996A962781D4CE00A0800D /* ContentView.swift in Sources */,
+				17C5ED4B2801CAB500175411 /* Temperature+CoreDataProperties.swift in Sources */,
 				17D18A5027E222A100D0B9DD /* WeightView.swift in Sources */,
 				178D331327FF377600CAA23F /* CurrentUserModel.swift in Sources */,
 				17B7E34727C0DB800004A990 /* TemperatureView.swift in Sources */,
@@ -277,19 +305,23 @@
 				170A608827F1FEC500062FA3 /* RegisterView.swift in Sources */,
 				179FBA8A27ECCC66001BBBBA /* HealthRecords.xcdatamodeld in Sources */,
 				170CAF7627EDFBAA0099AD57 /* ProfileView.swift in Sources */,
-				170A609727F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataClass.swift in Sources */,
+				17C5ED562801E65800175411 /* DrugTakeMetaDataCD+CoreDataClass.swift in Sources */,
 				1721685C27FC364300C22D7C /* APIWorker.swift in Sources */,
 				172AB2DF27EBA0E50062634B /* CalendarView.swift in Sources */,
 				178D33172800A26A00CAA23F /* SurveyQuestionView.swift in Sources */,
 				172C12C127E3942E005E1EB0 /* SymptomRow.swift in Sources */,
 				170CAF7827EDFD980099AD57 /* ProfileModel.swift in Sources */,
 				17B7E34327C0D9040004A990 /* SurveyView.swift in Sources */,
+				17C5ED4F2801CD1300175411 /* AddDoctorVisitView.swift in Sources */,
 				17AF5C0727F4C2260066CFFD /* DayButton.swift in Sources */,
+				17C5ED4A2801CAB500175411 /* Temperature+CoreDataClass.swift in Sources */,
 				17B7E34127C0D8E40004A990 /* ChatView.swift in Sources */,
+				17C5ED4D2801CAB500175411 /* Weight+CoreDataProperties.swift in Sources */,
+				17C5ED592801F17300175411 /* Symptom.swift in Sources */,
 				17996A942781D4CE00A0800D /* MedAssistantApp.swift in Sources */,
 				17BFCAA627EBD316000CDFF0 /* DrugTake.swift in Sources */,
 				170D3E5D278DE380008F753C /* BotResponse.swift in Sources */,
-				170A609827F2178C00062FA3 /* DrugTakeMetaDataCD+CoreDataProperties.swift in Sources */,
+				17C5ED532801E58D00175411 /* DoctorVisitCD+CoreDataProperties.swift in Sources */,
 				170A609627F2178C00062FA3 /* DrugTakeCD+CoreDataProperties.swift in Sources */,
 				170A609A27F220B000062FA3 /* AddDrugTakeView.swift in Sources */,
 			);

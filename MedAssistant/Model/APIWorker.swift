@@ -30,7 +30,7 @@ final class APIWorker {
             guard let data = data else {
                 return
             }
-
+            
             guard let response = response as? HTTPURLResponse else {
                 return
             }
@@ -73,7 +73,7 @@ final class APIWorker {
             guard let data = data else {
                 return
             }
-
+            
             guard let response = response as? HTTPURLResponse else {
                 return
             }
@@ -236,12 +236,12 @@ final class APIWorker {
     
     //MARK: - API Call to submit survey answers
     func sendAnswers(id: Int, answers: [String]) {
-        guard let url = URL(string: "") else {
+        guard let url = URL(string: "https://telesfor.herokuapp.com/api/questionnaire/answer") else {
             print("Wrong url")
             return
         }
         
-        var answersBody = [[ : ]]
+        var answersBody : [[String: String]]  = []
         
         for index in 0..<answers.count {
             let currentAnswer = ["questionNr" : String(index + 1), "value" : answers[index]]
@@ -249,8 +249,38 @@ final class APIWorker {
         }
         
         let json = ["patientId" : String(id), "answers" : answersBody] as [String : Any]
+        print(json)
+        print(JSONSerialization.isValidJSONObject(json))
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
         
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+            
+            print("Send answers: \(response.statusCode)")
+            
+            DispatchQueue.main.async {
+                let decodedResponse = String(data: data, encoding: .utf8)
+                print(decodedResponse)
+            }
+        }
+        
+        dataTask.resume()
     }
 }

@@ -32,6 +32,15 @@ struct CalendarView: View {
                         .foregroundColor(.white)
                 }//.frame(minWidth: 0, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity,  alignment: .center)
                 
+                NavigationLink(destination: AddDoctorVisitView()){
+                    Text("Add Doctor Visit")
+                        .fontWeight(.bold)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.green, in: Capsule())
+                        .foregroundColor(.white)
+                }
+                
                 //                Button {
                 //                    //ToDo
                 //                } label: {

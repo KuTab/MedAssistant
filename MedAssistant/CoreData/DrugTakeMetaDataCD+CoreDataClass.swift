@@ -2,7 +2,7 @@
 //  DrugTakeMetaDataCD+CoreDataClass.swift
 //  MedAssistant
 //
-//  Created by Egor Dadugin on 28.03.2022.
+//  Created by Egor Dadugin on 09.04.2022.
 //
 //
 
