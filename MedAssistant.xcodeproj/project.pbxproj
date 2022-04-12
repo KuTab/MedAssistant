@@ -15,6 +15,7 @@
 		170CAF7827EDFD980099AD57 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CAF7727EDFD980099AD57 /* ProfileModel.swift */; };
 		170D3E5D278DE380008F753C /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D3E5C278DE380008F753C /* BotResponse.swift */; };
 		1721685C27FC364300C22D7C /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721685B27FC364300C22D7C /* APIWorker.swift */; };
+		172633542803E2C400B7CC7E /* HealthMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172633532803E2C400B7CC7E /* HealthMonitoringView.swift */; };
 		172AB2DF27EBA0E50062634B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172AB2DE27EBA0E50062634B /* CalendarView.swift */; };
 		172AB2E227EBC3AD0062634B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172AB2E127EBC3AD0062634B /* CustomDatePickerView.swift */; };
 		172C12BF27E38564005E1EB0 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C12BE27E38564005E1EB0 /* SymptomsView.swift */; };
@@ -60,6 +61,7 @@
 		170CAF7727EDFD980099AD57 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		170D3E5C278DE380008F753C /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
 		1721685B27FC364300C22D7C /* APIWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
+		172633532803E2C400B7CC7E /* HealthMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMonitoringView.swift; sourceTree = "<group>"; };
 		172AB2DE27EBA0E50062634B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		172AB2E127EBC3AD0062634B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		172C12BE27E38564005E1EB0 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				170A608727F1FEC500062FA3 /* RegisterView.swift */,
 				170A609927F220B000062FA3 /* AddDrugTakeView.swift */,
 				17C5ED4E2801CD1300175411 /* AddDoctorVisitView.swift */,
+				172633532803E2C400B7CC7E /* HealthMonitoringView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				17C5ED4F2801CD1300175411 /* AddDoctorVisitView.swift in Sources */,
 				17AF5C0727F4C2260066CFFD /* DayButton.swift in Sources */,
 				17C5ED4A2801CAB500175411 /* Temperature+CoreDataClass.swift in Sources */,
+				172633542803E2C400B7CC7E /* HealthMonitoringView.swift in Sources */,
 				17B7E34127C0D8E40004A990 /* ChatView.swift in Sources */,
 				17C5ED4D2801CAB500175411 /* Weight+CoreDataProperties.swift in Sources */,
 				17C5ED592801F17300175411 /* Symptom.swift in Sources */,

@@ -71,6 +71,8 @@ struct SurveyView: View {
                 APIWorker.shared.sendAnswers(id: resultId, answers: answers)
             case .failure(_):
                 print("failure")
+                LoginViewModel.shared.isLoggedIn = false
+                UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
             }
         }
         

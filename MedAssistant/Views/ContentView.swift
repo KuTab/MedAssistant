@@ -53,7 +53,7 @@ struct MainView: View {
 }
 
 struct ContentView: View {
-    @StateObject var loginVM = LoginViewModel()
+    @StateObject var loginVM = LoginViewModel.shared
     
     var body: some View {
         

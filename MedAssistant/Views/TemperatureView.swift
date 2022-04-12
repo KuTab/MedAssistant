@@ -8,10 +8,10 @@
 import Foundation
 import SwiftUI
 
-extension UIPickerView {
-    open override var intrinsicContentSize: CGSize { return CGSize(width: UIView.noIntrinsicMetric , height: super.intrinsicContentSize.height)}
-    
-}
+//extension UIPickerView {
+//    open override var intrinsicContentSize: CGSize { return CGSize(width: UIView.noIntrinsicMetric , height: super.intrinsicContentSize.height)}
+//
+//}
 
 struct TemperatureView: View {
     @State private var temperature: Int = 36

@@ -35,11 +35,15 @@ final class APIWorker {
                 return
             }
             
+            print("Get id: \(response.statusCode)")
+            print(response.url)
+            
+            
             DispatchQueue.main.async {
                 do {
-                    let decodedResponse = try JSONDecoder().decode(CurrentUserModel.self, from: data)
-                    print(decodedResponse.id)
-                    completion(.success(decodedResponse.id))
+                        let decodedResponse = try JSONDecoder().decode(CurrentUserModel.self, from: data)
+                        print(decodedResponse.id)
+                        completion(.success(decodedResponse.id))
                 } catch let error {
                     completion(.failure(error))
                 }
@@ -282,5 +286,18 @@ final class APIWorker {
         }
         
         dataTask.resume()
+    }
+    
+    //MARK: - API Call to submit health records
+    func sendHealthInfo(id: Int, temperature: String, weight: String, symptoms: [String]) {
+        guard let url = URL(string: "https://telesfor.herokuapp.com/api/symptoms/patient/add") else {
+            print("Wrong url")
+            return
+        }
+        
+        let json = ["patientId" : String(id), "bodyTemperature" : temperature, "weight" : weight, "symptoms" : symptoms] as [String : Any]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        
     }
 }

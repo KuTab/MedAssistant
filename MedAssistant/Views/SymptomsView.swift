@@ -11,6 +11,15 @@ struct SymptomsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var isOnArray: [Bool] = []
     @State var symptomsForRows: [Symptom] = [Symptom]()
+    @State var screen: Int = 0
+    
+    @State var temperature: Int = 36
+    @State var temperatureDecimal: Int = 6
+    @State var weight: Int = 75
+    @State var weightDecimal: Int = 5
+    
+    @State var chosenSymptoms: [String] = []
+    @State var severity: [String] = []
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -19,66 +28,72 @@ struct SymptomsView: View {
     
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
-                VStack {
-                    //                    Text("Symtops View")
-                    //                        .foregroundColor(.white)
-                    //                        .font(.system(size: 30))
-                    //                        .bold()
-                    Spacer()
-                    
-                    List(symptomsForRows.indices, id: \.self) { index in
-//                        HStack {
-//                            Text(symptomsForRows[index].name)
-//                                .foregroundColor(Color.black)
-//                            if isOnArray[index] {
-//                                Image(systemName: "checkmark.circle.fill")
-//                            }
-//                        }.frame(maxWidth: .infinity, alignment: .center)
-//                            .onTapGesture {
-//                            isOnArray[index].toggle()
-//                        }
-//                        SymptomRow(symptom: symptomsForRows[index].name, isOn: $isOnArray[index])
-//                            .frame(width: geometry.size.width - 10, height: 100)
-//                            .background(.white.opacity(0.2))
-//                            .cornerRadius(20)
-                        SymptomRow(symptom: symptomsForRows[index].name, isOn: $isOnArray[index])
+        if screen == 1 {
+            HealthMonitoringView(temperature: $temperature, temperatureDecimal: $temperatureDecimal, weight: $weight, weightDecimal: $weightDecimal, symptoms: chosenSymptoms, severity: severity)
+        } else {
+            GeometryReader { geometry in
+                ZStack {
+                    LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
+                    VStack {
+                        //                    Text("Symtops View")
+                        //                        .foregroundColor(.white)
+                        //                        .font(.system(size: 30))
+                        //                        .bold()
+                        Spacer()
+                        
+                        List(symptomsForRows.indices, id: \.self) { index in
+                            //                        HStack {
+                            //                            Text(symptomsForRows[index].name)
+                            //                                .foregroundColor(Color.black)
+                            //                            if isOnArray[index] {
+                            //                                Image(systemName: "checkmark.circle.fill")
+                            //                            }
+                            //                        }.frame(maxWidth: .infinity, alignment: .center)
+                            //                            .onTapGesture {
+                            //                            isOnArray[index].toggle()
+                            //                        }
+                            //                        SymptomRow(symptom: symptomsForRows[index].name, isOn: $isOnArray[index])
+                            //                            .frame(width: geometry.size.width - 10, height: 100)
+                            //                            .background(.white.opacity(0.2))
+                            //                            .cornerRadius(20)
+                            SymptomRow(symptom: symptomsForRows[index].name, isOn: $isOnArray[index])
                             //.frame(width: geometry.size.width - 10, height: 100)
-                            .background(.white.opacity(0.2))
-                            .cornerRadius(20)
-                    }.onAppear(perform: getSymptoms)
-                    
-                    Spacer()
-                    
-                    Button(action: doneChoice,
-                           label: {
-                        Text("Done")
-                            .font(.system(size: 30))
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth:  4))
-                    })
-                }
-                //                    .onChange(of: self.symptomsForRows) { newValue in
-                //                        isOnArray = Array(repeating: false, count: self.symptomsForRows.count)
-                //                    }
-            }.navigationBarTitle("Symptoms", displayMode: .inline)
+                                .background(.white.opacity(0.2))
+                                .cornerRadius(20)
+                        }.onAppear(perform: getSymptoms)
+                        
+                        Spacer()
+                        
+                        Button(action: doneChoice,
+                               label: {
+                            Text("Done")
+                                .font(.system(size: 30))
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding()
+                                .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth:  4))
+                        })
+                    }
+                    //                    .onChange(of: self.symptomsForRows) { newValue in
+                    //                        isOnArray = Array(repeating: false, count: self.symptomsForRows.count)
+                    //                    }
+                }.navigationBarTitle("Symptoms", displayMode: .inline)
+            }
         }
     }
     
     func doneChoice() {
-        var result : [String] = []
+        //var result : [String] = []
         for index in 0..<symptomsForRows.count {
             if isOnArray[index] {
-                result.append(symptomsForRows[index].name)
+                chosenSymptoms.append(symptomsForRows[index].name)
+                severity.append("5")
             }
         }
-        print(result)
+        //print(result)
+        screen = 1
         
-        presentationMode.wrappedValue.dismiss()
+        //presentationMode.wrappedValue.dismiss()
     }
     
     func getSymptoms(){
@@ -116,6 +131,8 @@ struct SymptomsView: View {
                     self.isOnArray = Array(repeating: false, count: self.symptomsForRows.count)
                     print("changed")
                 } catch {
+                    print("Break")
+                    //presentationMode.wrappedValue.dismiss()
                     return
                 }
             }
