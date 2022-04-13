@@ -289,15 +289,45 @@ final class APIWorker {
     }
     
     //MARK: - API Call to submit health records
-    func sendHealthInfo(id: Int, temperature: String, weight: String, symptoms: [String]) {
+    func sendHealthInfo(id: Int, temperature: String, weight: String, symptomsBody: [[String : String]]) {
         guard let url = URL(string: "https://telesfor.herokuapp.com/api/symptoms/patient/add") else {
             print("Wrong url")
             return
         }
         
-        let json = ["patientId" : String(id), "bodyTemperature" : temperature, "weight" : weight, "symptoms" : symptoms] as [String : Any]
+        let json = ["patientId" : String(id), "bodyTemperature" : temperature, "weight" : weight, "symptoms" : symptomsBody] as [String : Any]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
         
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+            
+            print("Send symptoms: \(response.statusCode)")
+            
+            
+            
+            DispatchQueue.main.async {
+                let decodedResponse = String(data: data, encoding: .utf8)
+                print(decodedResponse)
+            }
+        }
+        
+        dataTask.resume()
     }
 }

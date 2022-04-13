@@ -20,6 +20,7 @@ struct SymptomsView: View {
     
     @State var chosenSymptoms: [String] = []
     @State var severity: [String] = []
+    @State var symptomsBody: [[String : String]] = []
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -29,7 +30,7 @@ struct SymptomsView: View {
     
     var body: some View {
         if screen == 1 {
-            HealthMonitoringView(temperature: $temperature, temperatureDecimal: $temperatureDecimal, weight: $weight, weightDecimal: $weightDecimal, symptoms: chosenSymptoms, severity: severity)
+            HealthMonitoringView(temperature: $temperature, temperatureDecimal: $temperatureDecimal, weight: $weight, weightDecimal: $weightDecimal, symptomsBody: symptomsBody)
         } else {
             GeometryReader { geometry in
                 ZStack {
@@ -86,6 +87,8 @@ struct SymptomsView: View {
         //var result : [String] = []
         for index in 0..<symptomsForRows.count {
             if isOnArray[index] {
+                let newRecord = ["symptomId" : symptomsForRows[index].id, "severity" : "5"]
+                symptomsBody.append(newRecord)
                 chosenSymptoms.append(symptomsForRows[index].name)
                 severity.append("5")
             }

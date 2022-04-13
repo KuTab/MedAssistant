@@ -17,8 +17,9 @@ struct HealthMonitoringView: View {
     @Binding var temperatureDecimal: Int
     @Binding var weight: Int
     @Binding var weightDecimal: Int
-    var symptoms: [String]
-    var severity: [String] = []
+    //var symptoms: [String]
+    //var severity: [String] = []
+    var symptomsBody: [[String : String]]
     
     //all Health records about weight
     @FetchRequest(sortDescriptors: []) private var weightData: FetchedResults<Weight>
@@ -126,19 +127,28 @@ struct HealthMonitoringView: View {
     
     func doneMonitoring() {
         let todayTemperature = Temperature(context: moc)
-        todayTemperature.value = Double(temperature) + Double(temperatureDecimal) * 0.1
+        let finalTemperature = Double(temperature) + Double(temperatureDecimal) * 0.1
+        todayTemperature.value = finalTemperature
         todayTemperature.date = Date.now
         todayTemperature.id = UUID()
         
         let todayWeight = Weight(context: moc)
-        todayWeight.value = Double(weight) + Double(weightDecimal) * 0.1
+        let finalWeight = Double(weight) + Double(weightDecimal) * 0.1
+        todayWeight.value = finalWeight
         todayWeight.date = Date.now
         todayWeight.id = UUID()
         
         //can throw exception
         try? moc.save()
         
-        
+        APIWorker.shared.getUserID() { respone in
+            switch respone {
+            case .success(let id):
+                APIWorker.shared.sendHealthInfo(id: id, temperature: String(finalTemperature), weight: String(finalWeight), symptomsBody: symptomsBody)
+            case .failure(_):
+                print("failure")
+            }
+        }
         
         presentationMode.wrappedValue.dismiss()
     }
@@ -151,6 +161,6 @@ struct HealthMonitoringView_Previews: PreviewProvider {
     @State static var weightDecimal: Int = 5
     
     static var previews: some View {
-        HealthMonitoringView(temperature: $temperature, temperatureDecimal: $temperatureDecimal, weight: $weight, weightDecimal: $weightDecimal, symptoms: [], severity: [])
+        HealthMonitoringView(temperature: $temperature, temperatureDecimal: $temperatureDecimal, weight: $weight, weightDecimal: $weightDecimal, symptomsBody: [])
     }
 }
