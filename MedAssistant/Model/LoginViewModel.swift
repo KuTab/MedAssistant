@@ -24,6 +24,7 @@ final class LoginViewModel: ObservableObject {
     @Published var patronymic = ""
     @Published var preRegistered = false
     @Published var confirmationCode = ""
+    @Published var error = false
     
     //private var receivedCode = ""
     
@@ -34,6 +35,8 @@ final class LoginViewModel: ObservableObject {
     
     // MARK: - Function performing authorization
     func signIn() {
+        self.error = false
+        
         guard canSignIn else {
             return
         }
@@ -47,9 +50,11 @@ final class LoginViewModel: ObservableObject {
                 
             case .success(false):
                 print("error in loggining")
+                self.error = true
                 
             case .failure(_):
                 print("failure")
+                self.error = true
             }
         }
     }

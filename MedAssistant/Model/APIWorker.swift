@@ -109,7 +109,9 @@ final class APIWorker {
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print(error.localizedDescription)
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
                 return
             }
             
@@ -128,6 +130,8 @@ final class APIWorker {
                     if (decodedResponse == "Api is working! Hello ^^") {
                         completion(.success(true))
                         print("set to true")
+                    } else {
+                        completion(.success(false))
                     }
                     
                 } catch let error {

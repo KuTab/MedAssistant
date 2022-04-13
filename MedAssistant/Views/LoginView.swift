@@ -30,6 +30,11 @@ struct LoginView: View {
                 .textFieldStyle(.roundedBorder)
                 .disabled(viewModel.isSigningIn)
                 
+                if(viewModel.error){
+                    Text("Error occured, please, check phone number and password or internet connection")
+                        .foregroundColor(Color.red)
+                }
+                
                 if viewModel.isSigningIn {
                     ProgressView()
                         .progressViewStyle(.circular)
@@ -41,6 +46,7 @@ struct LoginView: View {
                     .background(.green.opacity(0.8))
                     .cornerRadius(20)
                     .foregroundColor(.white)
+                    .disabled(viewModel.phone.isEmpty && viewModel.password.isEmpty)
                 }
                 
             }
