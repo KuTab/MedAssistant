@@ -18,28 +18,35 @@ struct LoginView: View {
             
             VStack {
                 VStack{
-                    Text("Phone")
-                    TextField("Enter phone number", text: $viewModel.phone)
+                    Text("Номер телефона")
+                    TextField("Введите номер телефона", text: $viewModel.phone)
                         .keyboardType(.emailAddress)
                         .disableAutocorrection(true)
                     
-                    Text("Password")
-                    SecureField("Enter password", text: $viewModel.password)
+                    Text("Пароль")
+                    SecureField("Введите пароль", text: $viewModel.password)
                 }
                 .padding()
                 .textFieldStyle(.roundedBorder)
                 .disabled(viewModel.isSigningIn)
                 
                 if(viewModel.error){
-                    Text("Error occured, please, check phone number and password or internet connection")
+                    Text("При входе произошла ошибка. Пожалуйста, проверьте корректность введенных данных или интернет соединение")
                         .foregroundColor(Color.red)
                 }
+                
+                Button(action: {
+                    viewModel.isRegistered = false
+                    UserDefaults.standard.setValue(false, forKey: "IsRegistered")
+                }, label: {
+                    Text("У меня нет аккаунта")
+                })
                 
                 if viewModel.isSigningIn {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
-                    Button("Sign In") {
+                    Button("Вход") {
                         viewModel.signIn()
                     }
                     .padding()

@@ -22,7 +22,7 @@ struct CustomDatePickerView: View {
         VStack(spacing: 35) {
             
             //Days
-            let days: [String] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            let days: [String] = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
             
             HStack(spacing: 20) {
                 
@@ -92,7 +92,7 @@ struct CustomDatePickerView: View {
             
             VStack(spacing: 30) {
                 
-                Text("Events")
+                Text("События")
                     .font(.title2.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 20)
@@ -100,7 +100,7 @@ struct CustomDatePickerView: View {
                 if let drugTake = drugTakeMD.first(where: { drugTake in
                     return isSameDay(date1: drugTake.unwrappedDate, date2: currentDate)
                 }){
-                    Text("Drug takes")
+                    Text("Приемы лекарств")
                         .font(.title3)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -120,11 +120,11 @@ struct CustomDatePickerView: View {
                                 .background(Color.purple.opacity(0.5).cornerRadius(10))
                         }
                     } else {
-                        Text("No drug takes")
+                        Text("Не запланированы приемы лекарств")
                     }
                     
                     
-                    Text("Doctor visits")
+                    Text("Посещения врача")
                         .font(.title3)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -144,12 +144,12 @@ struct CustomDatePickerView: View {
                                 .background(Color.orange.opacity(0.5).cornerRadius(10))
                         }
                     } else {
-                        Text("No doctor visits")
+                        Text("Не запланированы посещения врача")
                     }
                     
                 } else {
                     
-                    Text("No events")
+                    Text("Нет событий на этот день")
                 }
             }.padding()
         }
@@ -205,9 +205,10 @@ struct CustomDatePickerView: View {
     func getDate() -> [String] {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY MMMM"
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateFormat = "YYYY LLLL"
         
-        let date = formatter.string(from: currentDate)
+        let date = formatter.string(from: currentDate).capitalized
         
         return date.components(separatedBy: " ")
     }

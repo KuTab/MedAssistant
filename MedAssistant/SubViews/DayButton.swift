@@ -13,6 +13,7 @@ struct DayButton: View {
     var body: some View {
         Button(action: { isSelected.toggle() },
                label: { Text(dayName)
+                .font(.system(size: 15))
                 .frame(maxWidth: .infinity)
                 .foregroundColor(isSelected ? Color.white : Color.gray.opacity(0.8))
                 .padding()

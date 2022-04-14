@@ -26,12 +26,12 @@ struct ProfileView: View {
             
             HStack {
                 
-                Text("Name: ")
+                Text("Имя: ")
                     .font(.title.bold())
                 
                 if(isEditing) {
                     
-                    TextField("Name", text: $profileData.name)
+                    TextField("Имя", text: $profileData.name)
                         .padding(.vertical, 7)
                         .padding(.horizontal, 5)
                         .background(Color.gray.opacity(0.1))
@@ -47,12 +47,12 @@ struct ProfileView: View {
             
             HStack {
                 
-                Text("Surname: ")
+                Text("Фамилия: ")
                     .font(.title.bold())
                 
                 if(isEditing) {
                     
-                    TextField("Surame", text: $profileData.surname)
+                    TextField("Фамилия", text: $profileData.surname)
                         .padding(.vertical, 7)
                         .padding(.horizontal, 5)
                         .background(Color.gray.opacity(0.1))
@@ -68,12 +68,12 @@ struct ProfileView: View {
             
             HStack {
                 
-                Text("Age: ")
+                Text("Возраст: ")
                     .font(.title.bold())
                 
                 if(isEditing) {
                     
-                    TextField("Age", text: $profileData.age)
+                    TextField("Возраст", text: $profileData.age)
                         .padding(.vertical, 7)
                         .padding(.horizontal, 5)
                         .background(Color.gray.opacity(0.1))
@@ -100,7 +100,7 @@ struct ProfileView: View {
                 
                 HStack {
                     
-                    Text(isEditing ? "Save changes" : "Edit info")
+                    Text(isEditing ? "Сохранить" : "Редактировать")
                         .fontWeight(.bold)
                     
                     Image(systemName: "pencil")

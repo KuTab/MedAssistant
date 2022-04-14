@@ -36,7 +36,7 @@ struct HealthMonitoringView: View {
             //ZStack {
             //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottom, endPoint: .top).ignoresSafeArea(.all)
             VStack() {
-                Text("Temperature")
+                Text("Температура")
                     .foregroundColor(.blue)//.white
                     .font(.system(size: 60))
                     .bold()
@@ -71,7 +71,7 @@ struct HealthMonitoringView: View {
                 Spacer()
                 
                 
-                Text("Weight")
+                Text("Вес")
                     .foregroundColor(.blue)//.white
                     .font(.system(size: 60))
                     .bold()
@@ -108,7 +108,7 @@ struct HealthMonitoringView: View {
                 
                 Button(action: doneMonitoring,
                        label: {
-                    Text("Done")
+                    Text("Завершить")
                         .font(.system(size: 30))
                         .bold()
                         .foregroundColor(.black)//.white
@@ -149,6 +149,14 @@ struct HealthMonitoringView: View {
                 print("failure")
             }
         }
+        let date = Date.now
+        var finalDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        finalDate = Calendar.current.startOfDay(for: finalDate!)
+        print(finalDate)
+        print(Date.now)
+        
+        UserDefaults.standard.setValue(finalDate, forKey: "healthMonitoringDate")
+        UserDefaults.standard.removeObject(forKey: "healthInfoDate")
         
         presentationMode.wrappedValue.dismiss()
     }

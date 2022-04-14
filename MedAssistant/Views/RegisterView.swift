@@ -16,33 +16,40 @@ struct RegisterView: View {
             
             VStack {
                 VStack{
-                    Text("Name")
-                    TextField("Enter name", text: $viewModel.name)
+                    Text("Имя")
+                    TextField("Введите имя", text: $viewModel.name)
                     
-                    Text("Surname")
-                    TextField("Enter surname", text: $viewModel.surname)
+                    Text("Фамилия")
+                    TextField("Введите фамилию", text: $viewModel.surname)
                     
-                    Text("Patronymic")
-                    TextField("Enter patronymic", text: $viewModel.patronymic)
+                    Text("Отчество")
+                    TextField("Введите отчество", text: $viewModel.patronymic)
                     
-                    Text("Phone")
-                    TextField("Enter phone number", text: $viewModel.phone)
+                    Text("Номер телефона")
+                    TextField("Введите номер телефона", text: $viewModel.phone)
                         .keyboardType(.emailAddress)
                         .disableAutocorrection(true)
                     
-                    Text("Password")
-                    SecureField("Enter password", text: $viewModel.password)
+                    Text("Пароль")
+                    SecureField("Введите пароль", text: $viewModel.password)
                     
                 }
                 .padding()
                 .textFieldStyle(.roundedBorder)
                 .disabled(viewModel.isSigningIn)
                 
+                Button(action: {
+                    viewModel.isRegistered = true
+                    UserDefaults.standard.setValue(true, forKey: "IsRegistered")
+                }, label: {
+                    Text("У меня уже есть аккаунт")
+                })
+                
                 if viewModel.isSigningIn {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
-                    Button("Register") {
+                    Button("Регистрация") {
                         viewModel.register()
                     }
                     .padding()
@@ -54,13 +61,13 @@ struct RegisterView: View {
                 if viewModel.preRegistered {
                     VStack {
                         VStack {
-                            Text("Confirmation code")
-                            TextField("Enter confirmation code", text: $viewModel.confirmationCode)
+                            Text("Код подтверждения")
+                            TextField("Введите код подтверждения", text: $viewModel.confirmationCode)
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         
-                        Button("Confirm phone") {
+                        Button("Подтвердить") {
                             viewModel.confirm()
                         }
                         .padding()

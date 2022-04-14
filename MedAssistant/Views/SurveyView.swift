@@ -23,6 +23,7 @@ enum Options: String, CaseIterable, Identifiable {
 struct SurveyView: View {
     @State private var picker1: String = ""
     @State private var answers: [String] = Array(repeating: "0", count: 30)
+    var availableDate = UserDefaults.standard.object(forKey: "surveyDate") as? Date ?? Date.now
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -30,9 +31,9 @@ struct SurveyView: View {
         //ZStack {
         //LinearGradient(gradient: Gradient(colors: [Color.blue, Color.teal]), startPoint: .bottomLeading, endPoint: .topTrailing)
         //.ignoresSafeArea(.all)
-        
+        if Date.now >= availableDate {
         VStack {
-            Text("Survey")
+            Text("Опрос")
                 .font(.title)
                 .bold()
             ScrollView{
@@ -45,7 +46,7 @@ struct SurveyView: View {
                 HStack{
                     Button(action: submitAnswers,
                            label: {
-                        Text("Submit")
+                        Text("Отправить")
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .center)
                             .background(.green.opacity(0.8))
@@ -60,6 +61,9 @@ struct SurveyView: View {
             .onChange(of: picker1) { newValue in
                 print(newValue)
             }
+        } else {
+            Text("В следующий раз опрос можно пройти \(formatDate(date: availableDate))")
+        }
         //}.navigationBarTitle("", displayMode: .inline)
     }
     
@@ -76,7 +80,19 @@ struct SurveyView: View {
             }
         }
         
+        let date = Date.now
+        var finalDate = Calendar.current.date(byAdding: .month, value: 1, to: date)
+        finalDate = Calendar.current.startOfDay(for: finalDate!)
+        
+        UserDefaults.standard.setValue(finalDate, forKey: "surveyDate")
+        
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func formatDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: date)
     }
 }
 

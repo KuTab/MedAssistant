@@ -14,14 +14,14 @@ struct AddDrugTakeView: View {
     @State var endDate: Date = Date.now
     @State var drugTime: [Date] = [Date.now]
     @State var numADay: Int = 1
-    @State var daysOfTakes: String = "Everyday"
+    @State var daysOfTakes: String = "Каждый день"
     @State var daysSelected: [Bool] = [Bool](repeating: false, count: 7)
     
     //addition to a date for next drug take
     @State var daysAddition: Int = 1
     //options for days of take
-    let optionValues = ["Everyday", "In one day", "Select Days"]
-    let days = ["M", "T", "W", "T", "F", "S", "S"]
+    let optionValues = ["Каждый день", "Через день", "Выбранные дни"]
+    let days = ["П", "В", "С", "Ч", "П", "С", "В"]
     
     @FetchRequest(sortDescriptors: []) private var drugTakeMD: FetchedResults<DrugTakeMetaDataCD>
     @FetchRequest(sortDescriptors: []) private var drugTake: FetchedResults<DrugTakeCD>
@@ -31,8 +31,8 @@ struct AddDrugTakeView: View {
     var body: some View {
         VStack{
             HStack {
-                Text("Title:")
-                TextField("Enter drug title", text: $drugTitle)
+                Text("Название:")
+                TextField("Введите название лекарства", text: $drugTitle)
             }.padding()
                 .textFieldStyle(.roundedBorder)
             
@@ -43,35 +43,43 @@ struct AddDrugTakeView: View {
                 }
             }.padding()
             
-            DatePicker("Start date", selection: $startDate, displayedComponents: .date)
+            DatePicker("Начало приема", selection: $startDate, displayedComponents: .date)
                 .padding()
             
-            DatePicker("End date", selection: $endDate, displayedComponents: .date)
+            DatePicker("Окончание приема", selection: $endDate, displayedComponents: .date)
                 .padding()
             
-            Picker("Takes a day", selection: $numADay) {
-                ForEach(1..<4, id: \.self) { num in
-                    Text("\(num)")
-                        .foregroundColor(.black)//.white
+            HStack {
+                Text("Количество приемов в день")
+                Spacer()
+                Picker("Количество приемов в день", selection: $numADay) {
+                    ForEach(1..<4, id: \.self) { num in
+                        Text("\(num)")
+                            .foregroundColor(.black)//.white
+                    }
                 }
-            }
+            }.padding()
             
-            Picker("Days of take", selection: $daysOfTakes) {
-                ForEach(optionValues, id: \.self) { option in
-                    Text(option)
-                        .foregroundColor(.black)
+            HStack {
+                Text("Частота приема")
+                Spacer()
+                Picker("Частота приема", selection: $daysOfTakes) {
+                    ForEach(optionValues, id: \.self) { option in
+                        Text(option)
+                            .foregroundColor(.black)
+                    }
                 }
-            }
+            }.padding()
             
             ForEach(drugTime.indices, id: \.self) { index in
-                DatePicker("Time", selection: $drugTime[index], displayedComponents: .hourAndMinute)
+                DatePicker("Время приема №\(index + 1)", selection: $drugTime[index], displayedComponents: .hourAndMinute)
                     .padding()
                 
             }
             
-            Button (action: daysOfTakes == "Select Days" ? addDrugByDaysSelected : addDrug,
+            Button (action: daysOfTakes == "Выбранные дни" ? addDrugByDaysSelected : addDrug,
                     label: {
-                Text("Add")
+                Text("Добавить")
                     .fontWeight(.bold)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
@@ -98,13 +106,13 @@ struct AddDrugTakeView: View {
             }
             .onChange(of: daysOfTakes) { newValue in
                 switch newValue {
-                case "Everyday":
+                case "Каждый день":
                     daysAddition = 1
                     
-                case "In one day":
+                case "Через день":
                     daysAddition = 2
                     
-                case "Select days":
+                case "Выбранные дни":
                     daysAddition = 1
                     
                 default:
@@ -131,7 +139,7 @@ struct AddDrugTakeView: View {
         APIWorker.shared.getUserID { result in
             switch result {
             case .success(let resultId) :
-                APIWorker.shared.sendNewDrug(id: resultId, name: drugTitle, startDate: convertDate(date: startDate), endDate: convertDate(date: endDate), numDays: "2", type: "tablet", dosage: "100")
+                APIWorker.shared.sendNewDrug(id: resultId, name: drugTitle, startDate: convertDate(date: startDate), endDate: convertDate(date: endDate), numDays: "5", type: "tablet", dosage: "100")
                 print("Got an id and send request for adding drug")
             case .failure(_) :
                 print()
@@ -160,7 +168,7 @@ struct AddDrugTakeView: View {
                 
                 let content = UNMutableNotificationContent()
                 content.title = drugTitle
-                content.subtitle = "It's time to take your medicine"
+                content.subtitle = "Время принять лекарство"
                 content.sound = UNNotificationSound.default
                 
                 let dateComponents = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: totalDate)
@@ -202,10 +210,29 @@ struct AddDrugTakeView: View {
     }
     
     func addDrugByDaysSelected() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Notifications allowed")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
         let calendar = Calendar.current
         var totalDate = startDate
         let chosenDaysOfWeek = parseDayNumbers(chosenDays: daysSelected)
         print(chosenDaysOfWeek)
+        
+        APIWorker.shared.getUserID { result in
+            switch result {
+            case .success(let resultId) :
+                APIWorker.shared.sendNewDrug(id: resultId, name: drugTitle, startDate: convertDate(date: startDate), endDate: convertDate(date: endDate), numDays: "2", type: "tablet", dosage: "100")
+                print("Got an id and send request for adding drug")
+            case .failure(_) :
+                print()
+
+            }
+        }
         
         while totalDate <= endDate {
             for chosenDayNumber in chosenDaysOfWeek {
@@ -226,6 +253,19 @@ struct AddDrugTakeView: View {
                     totalDate = calendar.date(bySetting: .minute, value: parseTime.minute! , of: totalDate)!
                     
                     newDrugTake.time = totalDate
+                    
+                    let content = UNMutableNotificationContent()
+                    content.title = drugTitle
+                    content.subtitle = "Время принять лекарство"
+                    content.sound = UNNotificationSound.default
+                    
+                    let dateComponents = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: totalDate)
+                    
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                    
+                    UNUserNotificationCenter.current().add(request)
                     //                print(startDate)
                     //                    print(parseTime)
                     //                    print(totalDate)

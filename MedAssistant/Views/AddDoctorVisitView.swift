@@ -17,7 +17,7 @@ struct AddDoctorVisitView: View {
     
     var body: some View {
         VStack{
-            Text("Add Doctor Visit")
+            Text("Добавить посещение")
                 .font(.title)
                 .bold()
                 .padding()
@@ -25,19 +25,19 @@ struct AddDoctorVisitView: View {
             Spacer()
             
             HStack {
-                Text("Title:")
-                TextField("Enter doctor visit title", text: $title)
+                Text("Название посещения:")
+                TextField("Введите название посещения", text: $title)
             }.padding()
                 .textFieldStyle(.roundedBorder)
             
-            DatePicker("Start date", selection: $date)
+            DatePicker("Дата посещения", selection: $date)
                 .padding()
             
             Spacer()
             
             Button (action: addVisit,
                     label: {
-                Text("Add")
+                Text("Добавить")
                     .fontWeight(.bold)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
@@ -48,6 +48,14 @@ struct AddDoctorVisitView: View {
     }
     
     func addVisit() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Notifications allowed")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
         var calendar = Calendar.current
         
         let newDoctorVisit = DoctorVisitCD(context: moc)
@@ -55,6 +63,19 @@ struct AddDoctorVisitView: View {
         newDoctorVisit.id = UUID()
         newDoctorVisit.title = title
         newDoctorVisit.date = date
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = "Не забудте посетить врача"
+        content.sound = UNNotificationSound.default
+        
+        let dateComponents = calendar.dateComponents([.day, .month, .year], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
         
         if let doctorVisitMD = metaData.first(where: { doctorVisit in
             return isSameDay(date1: doctorVisit.unwrappedDate, date2: date)

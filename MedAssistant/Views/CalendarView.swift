@@ -24,7 +24,8 @@ struct CalendarView: View {
             HStack {
                 
                 NavigationLink(destination: AddDrugTakeView()){
-                    Text("Add Drug")
+                    Text("Добавить лекарство")
+                        .font(.system(size: 14))
                         .fontWeight(.bold)
                         .padding(.vertical)
                         .frame(maxWidth: .infinity)
@@ -33,7 +34,8 @@ struct CalendarView: View {
                 }//.frame(minWidth: 0, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity,  alignment: .center)
                 
                 NavigationLink(destination: AddDoctorVisitView()){
-                    Text("Add Doctor Visit")
+                    Text("Добавить посещение")
+                        .font(.system(size: 14))
                         .fontWeight(.bold)
                         .padding(.vertical)
                         .frame(maxWidth: .infinity)

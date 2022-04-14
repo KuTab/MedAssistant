@@ -13,12 +13,12 @@ struct ChatView: View {
     @State private var messageText = ""
     
     //Array of messages
-    @State var messages: [String] = ["Welcome to chat bot"]
+    @State var messages: [String] = ["Приветствую Вас!"]
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Chat bot")
+                Text("Чат-бот")
                     .font(.largeTitle)
                     .bold()
                     .foregroundColor(Color.blue)//white
@@ -62,7 +62,7 @@ struct ChatView: View {
                 .background(Color.gray.opacity(0.10))
             
             HStack {
-                TextField("Type something here", text: $messageText)
+                TextField("Введите сообщение", text: $messageText)
                     .padding()
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(10)
