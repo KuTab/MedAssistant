@@ -133,7 +133,7 @@ final class APIWorker {
                     print(data)
                     let decodedResponse = String(data: data, encoding: .utf8)!
                     print(decodedResponse)
-                    if (response.statusCode == 200) {
+                    if (decodedResponse.contains("Api")) {
                         completion(.success(true))
                         print("set to true")
                     } else {

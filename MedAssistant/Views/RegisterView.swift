@@ -58,6 +58,11 @@ struct RegisterView: View {
                     .foregroundColor(.white)
                 }
                 
+                if(!viewModel.error.isEmpty) {
+                    Text(viewModel.error)
+                        .foregroundColor(Color.red)
+                }
+                
                 if viewModel.preRegistered {
                     VStack {
                         VStack {
