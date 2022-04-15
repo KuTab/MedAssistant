@@ -87,8 +87,14 @@ final class APIWorker {
             
             
             DispatchQueue.main.async {
+                if response.statusCode == 200 {
                 let decodedResponse = String(data: data, encoding: .utf8)
                 print(decodedResponse)
+                } else {
+                    LoginViewModel.shared.isLoggedIn = false
+                    UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                    LoginViewModel.shared.error = "Ошибка соединения"
+                }
             }
         }
         
@@ -127,7 +133,7 @@ final class APIWorker {
                     print(data)
                     let decodedResponse = String(data: data, encoding: .utf8)!
                     print(decodedResponse)
-                    if (decodedResponse == "Api is working! Hello ^^") {
+                    if (response.statusCode == 200) {
                         completion(.success(true))
                         print("set to true")
                     } else {
@@ -230,6 +236,8 @@ final class APIWorker {
                     if (decodedResponse == "confirmed") {
                         completion(.success(true))
                         //print("set to true")
+                    } else {
+                        completion(.success(false))
                     }
                     
                 } catch let error {
@@ -284,8 +292,21 @@ final class APIWorker {
             print("Send answers: \(response.statusCode)")
             
             DispatchQueue.main.async {
+                if response.statusCode == 200 {
                 let decodedResponse = String(data: data, encoding: .utf8)
                 print(decodedResponse)
+                
+                let date = Date.now
+                var finalDate = Calendar.current.date(byAdding: .month, value: 1, to: date)
+                finalDate = Calendar.current.startOfDay(for: finalDate!)
+                
+                UserDefaults.standard.setValue(finalDate, forKey: "surveyDate")
+                } else {
+                    LoginViewModel.shared.isLoggedIn = false
+                    UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                    LoginViewModel.shared.error = "Ошибка соединения"
+                }
+                
             }
         }
         
@@ -327,8 +348,18 @@ final class APIWorker {
             
             
             DispatchQueue.main.async {
+                if response.statusCode == 200 {
                 let decodedResponse = String(data: data, encoding: .utf8)
                 print(decodedResponse)
+                let date = Date.now
+                var finalDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
+                finalDate = Calendar.current.startOfDay(for: finalDate!)
+                UserDefaults.standard.setValue(finalDate, forKey: "healthMonitoringDate")
+                } else {
+                    LoginViewModel.shared.isLoggedIn = false
+                    UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                    LoginViewModel.shared.error = "Ошибка соединения"
+                }
             }
         }
         

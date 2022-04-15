@@ -147,16 +147,12 @@ struct HealthMonitoringView: View {
                 APIWorker.shared.sendHealthInfo(id: id, temperature: String(finalTemperature), weight: String(finalWeight), symptomsBody: symptomsBody)
             case .failure(_):
                 print("failure")
+                LoginViewModel.shared.isLoggedIn = false
+                UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                LoginViewModel.shared.error = "Ошибка соединения"
             }
         }
-        let date = Date.now
-        var finalDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
-        finalDate = Calendar.current.startOfDay(for: finalDate!)
-        print(finalDate)
         print(Date.now)
-        
-        UserDefaults.standard.setValue(finalDate, forKey: "healthMonitoringDate")
-        UserDefaults.standard.removeObject(forKey: "healthInfoDate")
         
         presentationMode.wrappedValue.dismiss()
     }

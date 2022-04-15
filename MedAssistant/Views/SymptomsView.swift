@@ -22,13 +22,12 @@ struct SymptomsView: View {
     @State var severity: [Int] = []
     @State var symptomsBody: [[String : String]] = []
     
-    var availableDate = UserDefaults.standard.object(forKey: "healthMonitoringDate") as? Date ?? Date.now
+    @State var availableDate: Date = UserDefaults.standard.object(forKey: "healthMonitoringDate") as? Date ?? Date.now
     
     //    init() {
     //        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     //        UINavigationBar.appearance().tintColor = UIColor.white
     //    }
-    
     
     var body: some View {
         if Date.now >= availableDate {
@@ -81,6 +80,9 @@ struct SymptomsView: View {
                             //.overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth:  4))
                     }).padding()
                 }.navigationBarTitle("Симптомы", displayMode: .inline)
+                    .onAppear() {
+                        self.availableDate = UserDefaults.standard.object(forKey: "healthMonitoringDate") as? Date ?? Date.now
+                    }
                 //                    .onChange(of: self.symptomsForRows) { newValue in
                 //                        isOnArray = Array(repeating: false, count: self.symptomsForRows.count)
                 //                    }
@@ -89,6 +91,7 @@ struct SymptomsView: View {
         }
         } else {
             Text("В следующий раз пройти самоконтроль можно \(formatDate(date: availableDate))")
+                .padding()
         }
     }
     
@@ -148,6 +151,7 @@ struct SymptomsView: View {
                     //presentationMode.wrappedValue.dismiss()
                     LoginViewModel.shared.isLoggedIn = false
                     UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                    LoginViewModel.shared.error = "Ошибка соединения"
                     return
                 }
             }

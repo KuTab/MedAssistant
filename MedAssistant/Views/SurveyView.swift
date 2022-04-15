@@ -23,9 +23,11 @@ enum Options: String, CaseIterable, Identifiable {
 struct SurveyView: View {
     @State private var picker1: String = ""
     @State private var answers: [String] = Array(repeating: "0", count: 30)
-    var availableDate = UserDefaults.standard.object(forKey: "surveyDate") as? Date ?? Date.now
+    @State var availableDate : Date = UserDefaults.standard.object(forKey: "surveyDate") as? Date ?? Date.now
+    
     
     @Environment(\.presentationMode) var presentationMode
+
     
     var body: some View {
         //ZStack {
@@ -61,6 +63,9 @@ struct SurveyView: View {
             .onChange(of: picker1) { newValue in
                 print(newValue)
             }
+            .onAppear() {
+                self.availableDate = UserDefaults.standard.object(forKey: "surveyDate") as? Date ?? Date.now
+            }
         } else {
             Text("В следующий раз опрос можно пройти \(formatDate(date: availableDate))")
         }
@@ -77,14 +82,9 @@ struct SurveyView: View {
                 print("failure")
                 LoginViewModel.shared.isLoggedIn = false
                 UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                LoginViewModel.shared.error = "Ошибка соединения"
             }
         }
-        
-        let date = Date.now
-        var finalDate = Calendar.current.date(byAdding: .month, value: 1, to: date)
-        finalDate = Calendar.current.startOfDay(for: finalDate!)
-        
-        UserDefaults.standard.setValue(finalDate, forKey: "surveyDate")
         
         presentationMode.wrappedValue.dismiss()
     }
@@ -98,6 +98,6 @@ struct SurveyView: View {
 
 struct SurveyView_Previews: PreviewProvider {
     static var previews: some View {
-        SurveyView()
+        SurveyView(availableDate: Date.now)
     }
 }

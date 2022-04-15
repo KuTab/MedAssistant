@@ -24,7 +24,7 @@ final class LoginViewModel: ObservableObject {
     @Published var patronymic = ""
     @Published var preRegistered = false
     @Published var confirmationCode = ""
-    @Published var error = false
+    @Published var error = ""
     
     //private var receivedCode = ""
     
@@ -35,7 +35,8 @@ final class LoginViewModel: ObservableObject {
     
     // MARK: - Function performing authorization
     func signIn() {
-        self.error = false
+        UserDefaults.standard.setValue(Date.now, forKey: "surveyDate")
+        self.error = ""
         
         guard canSignIn else {
             return
@@ -50,17 +51,19 @@ final class LoginViewModel: ObservableObject {
                 
             case .success(false):
                 print("error in loggining")
-                self.error = true
+                self.error = "При входе произошла ошибка. Пожалуйста, проверьте корректность введенных данных."
                 
             case .failure(_):
                 print("failure")
-                self.error = true
+                self.error = "Ошибка при входе, проверьте интернет соединение"
             }
         }
     }
     
     // MARK: - Function performing registration
     func register() {
+        self.error = ""
+        
         guard canSignIn else {
             return
         }
@@ -74,6 +77,7 @@ final class LoginViewModel: ObservableObject {
                 
             case .failure(_):
                 print("failure")
+                self.error = "Ошибка при регистрации"
             }
         }
         
@@ -88,6 +92,7 @@ final class LoginViewModel: ObservableObject {
     
     //MARK: - Function for phoneConfirmation
     func confirm() {
+        self.error = ""
         
         APIWorker.shared.confirmRequest(code: confirmationCode) { result in
             switch result {
@@ -101,9 +106,11 @@ final class LoginViewModel: ObservableObject {
             case .success(false):
                 
                 print("Wrong code")
+                self.error = "Ошибка при подтверждении аккаунта. Пожалуйста, проверьте корректность кода подтверждения"
             case .failure(_):
                 
                 print("failure")
+                self.error = "Ошибка при подтверждении аккаунта. Пожалуйста, проверьте интернет соединение"
             }
         }
     }

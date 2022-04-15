@@ -30,8 +30,8 @@ struct LoginView: View {
                 .textFieldStyle(.roundedBorder)
                 .disabled(viewModel.isSigningIn)
                 
-                if(viewModel.error){
-                    Text("При входе произошла ошибка. Пожалуйста, проверьте корректность введенных данных или интернет соединение")
+                if(!viewModel.error.isEmpty){
+                    Text(viewModel.error)
                         .foregroundColor(Color.red)
                 }
                 

@@ -69,7 +69,7 @@ struct AddDoctorVisitView: View {
         content.subtitle = "Не забудте посетить врача"
         content.sound = UNNotificationSound.default
         
-        let dateComponents = calendar.dateComponents([.day, .month, .year], from: date)
+        let dateComponents = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: date)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         

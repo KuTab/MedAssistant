@@ -30,6 +30,13 @@ struct AddDrugTakeView: View {
     
     var body: some View {
         VStack{
+            
+            Text("Добавить лекарство")
+                .font(.title)
+                .bold()
+                .padding()
+            
+            ScrollView {
             HStack {
                 Text("Название:")
                 TextField("Введите название лекарства", text: $drugTitle)
@@ -42,6 +49,7 @@ struct AddDrugTakeView: View {
                         .frame(maxWidth: .infinity)
                 }
             }.padding()
+                .ignoresSafeArea(.keyboard)
             
             DatePicker("Начало приема", selection: $startDate, displayedComponents: .date)
                 .padding()
@@ -86,19 +94,20 @@ struct AddDrugTakeView: View {
                     .background(Color.green, in: Capsule())
                     .foregroundColor(.white)
             }).padding()
+            }
+            
             
             //MARK: - for development only
-            Button (action: removeAllData,
-                    label: {
-                Text("Clear Data")
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.red, in: Capsule())
-                    .foregroundColor(.white)
-            }).padding()
-            
-                .disabled(drugTime.isEmpty)
+//            Button (action: removeAllData,
+//                    label: {
+//                Text("Clear Data")
+//                    .fontWeight(.bold)
+//                    .padding(.vertical)
+//                    .frame(maxWidth: .infinity)
+//                    .background(Color.red, in: Capsule())
+//                    .foregroundColor(.white)
+//            }).padding()
+//                .disabled(drugTime.isEmpty)
         }.navigationBarTitle("", displayMode: .inline)
             .onChange(of: numADay) { newValue in
                 
@@ -120,6 +129,7 @@ struct AddDrugTakeView: View {
                     
                 }
             }
+
     }
     
     func addDrug() {
@@ -143,6 +153,9 @@ struct AddDrugTakeView: View {
                 print("Got an id and send request for adding drug")
             case .failure(_) :
                 print()
+                LoginViewModel.shared.isLoggedIn = false
+                UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                LoginViewModel.shared.error = "Ошибка соединения"
 
             }
         }
@@ -230,6 +243,10 @@ struct AddDrugTakeView: View {
                 print("Got an id and send request for adding drug")
             case .failure(_) :
                 print()
+                
+                LoginViewModel.shared.isLoggedIn = false
+                UserDefaults.standard.setValue(false, forKey: "IsLoggedIn")
+                LoginViewModel.shared.error = "Ошибка соединения"
 
             }
         }

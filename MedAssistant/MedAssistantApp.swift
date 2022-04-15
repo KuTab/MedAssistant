@@ -16,6 +16,7 @@ struct MedAssistantApp: App {
     
     init(){
         NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: .main) { _ in
+            LoginViewModel.shared.isLoggedIn = false
             UserDefaults.standard.set(false, forKey: "IsLoggedIn")
         }
     }
